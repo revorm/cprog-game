@@ -2,3 +2,4 @@ cprog_game.creator.user
 game
 *~
 *.o
+*.so

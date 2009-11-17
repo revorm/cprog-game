@@ -1,5 +1,13 @@
 #include "character.h"
 
+const std::string& Character::name() const {
+  return m_name;
+}
+
+const std::string& Character::type() const {
+  return m_type;
+}
+
 void Character::go(Environment::Direction d) {
   if(m_current_environment->neighbor(d)) {
     m_current_environment->leave(this);

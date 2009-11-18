@@ -1,6 +1,6 @@
 
 TARGET=libchar
 
-OBJS=character.o troll.o
+OBJS=character.o
 
 include ../libs.mak

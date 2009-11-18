@@ -1,6 +1,10 @@
 #include "container.h"
+#include "../env/environment.h"
+#include "../char/character.h"
+
 #include <numeric>
 #include <algorithm>
+#include <functional>
 
 static int weight_op(int weight, Object* o) {
   return weight + o->weight();
@@ -33,6 +37,15 @@ bool Container::remove(Object* o) {
     return true;
   }
   return false;
+}
+
+/* Interacting a character and a container will empty the container
+  at the character's feet
+ */
+void Container::interact(Character* c) {
+  std::for_each(m_contents.begin(),m_contents.end(),
+                std::bind1st(std::mem_fun(&Environment::drop),c->environment()));
+  m_contents.clear();
 }
 
 int Container::max_weight() const {

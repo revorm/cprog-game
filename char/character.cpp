@@ -8,6 +8,10 @@ const std::string& Character::type() const {
   return m_type;
 }
 
+Environment* Character::environment() const {
+  return m_current_environment;
+}
+
 void Character::go(Environment::Direction d) {
   if(m_current_environment->neighbor(d)) {
     m_current_environment->leave(this);

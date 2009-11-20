@@ -7,8 +7,8 @@
 class Container : public Object
 {
 public:
-  Container(int weight, int value, const std::string& name, const std::string& desc, int max_weight) :
-      Object(weight,value,name,desc), m_max_weight(max_weight) {}
+  Container(const std::string& name, int weight, int value, const std::string& desc, int max_weight) :
+      Object(name,weight,value,desc), m_max_weight(max_weight) {}
   int weight() const;
   int value() const;
 

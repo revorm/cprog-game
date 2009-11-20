@@ -6,8 +6,8 @@
 class Idea : public Object
 {
 public:
-  Idea(std::string& name, std::string& desc, int value, bool good_idea) :
-      Object(1,value,name,desc), m_good_idea(good_idea) {}
+  Idea(const std::string& name, const std::string& desc, int value, bool good_idea) :
+      Object(name,1,value,desc), m_good_idea(good_idea) {}
 
   bool is_good() const;
 private:

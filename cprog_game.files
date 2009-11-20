@@ -19,3 +19,8 @@ obj/idea.h
 obj/Makefile
 obj/object.cpp
 obj/object.h
+gameelement.h
+env/computerroom.h
+env/computerroom.cpp
+env/outdoor.h
+env/outdoor.cpp

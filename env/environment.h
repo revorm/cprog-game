@@ -1,17 +1,17 @@
 #ifndef ENVIRONMENT_H
 #define ENVIRONMENT_H
 
-#include <string>
+#include "../gameelement.h"
+
 #include <vector>
 #include <map>
 
 class Character;
 class Object;
 
-class Environment
+class Environment : public GameElement
 {
 public:
-  virtual ~Environment();
 
   enum Direction { NORTH = 0, SOUTH = 1, EAST = 2, WEST = 3};
   const std::map<Direction,Environment*> directions() const;
@@ -28,7 +28,7 @@ public:
   virtual void drop(Object* o);
 
 protected:
-  Environment(std::string& desc) : m_description(desc) {}
+  Environment(std::string& name, std::string& desc) : GameElement(name), m_description(desc) {}
   void add_neighbor(Direction d, Environment* e);
   std::string m_description;
   std::vector<Object*> m_objects;

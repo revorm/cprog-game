@@ -7,3 +7,7 @@ int Object::value() const {
 int Object::weight() const {
   return m_weight;
 }
+
+std::string Object::description() const {
+  return m_description;
+}

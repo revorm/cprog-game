@@ -1,18 +1,16 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
+#include "../gameelement.h"
 #include "../env/environment.h"
 
 #include <string>
 #include <vector>
 
-class Character
+class Character : public GameElement
 {
 public:
-  virtual ~Character();
-
   const std::string& type() const;
-  const std::string& name() const;
   Environment* environment() const;
 
   virtual void go(Environment::Direction d); // allow override
@@ -23,12 +21,12 @@ public:
   virtual void talk_to(Character*) = 0;
 
 protected:
-  Character(const std::string& type,
-            const std::string& name) : m_type(type), m_name(name) {}
+  Character(const std::string& name,
+            const std::string& type
+            ) : GameElement(name) ,m_type(type) {}
+  std::string m_type;
   Environment* m_current_environment;
   std::vector<Object*> m_inventory;
-  std::string m_type;
-  std::string m_name;
 
 };
 

@@ -1,10 +1,16 @@
 #include <iostream>
 
-#include "char/troll.h"
+#include "memhandler.h"
+#include "obj/container.h"
+#include "char/character.h"
+#include "env/environment.h"
 
 int main(int argc, char **argv) {
-  Troll t(std::string("nisse"));
-  Troll t2(std::string("anders"));
-  t.talk_to(&t2);
+  Memhandler<Object>::get().insert(new Container(1,10,"a","b",10));
+
+
+  Memhandler<Character>::get().free();
+  Memhandler<Environment>::get().free();
+  Memhandler<Object>::get().free();
   return 0;
 }

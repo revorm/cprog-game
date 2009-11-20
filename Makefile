@@ -7,7 +7,7 @@ all: project_file $(SUBDIRS) game
 project_file: cprog_game.files 
 	./update_project_file.sh
 
-game: game.cpp
+game: game.cpp memhandler.cpp
 
 $(SUBDIRS):
 	$(MAKE) CXXFLAGS="$(CXXFLAGS)" -C $@
@@ -15,7 +15,7 @@ $(SUBDIRS):
 .PHONY: $(SUBDIRS) clean
 
 clean:
-	rm -f game
+	rm -f *.o game
 	for dir in $(SUBDIRS); do \
 		$(MAKE) -C $$dir clean; \
 	done

@@ -11,6 +11,8 @@ class Character
 public:
   const std::string& type() const;
   const std::string& name() const;
+  Environment* environment() const;
+
   virtual void go(Environment::Direction d); // allow override
   virtual void pick_up(Object* o); // allow override
   virtual void drop(Object* o); // allow override

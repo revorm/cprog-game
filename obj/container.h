@@ -7,12 +7,15 @@
 class Container : public Object
 {
 public:
-  Container(int weight, int value, int max_weight) : Object(weight,value), m_max_weight(max_weight) {}
+  Container(int weight, int value, const std::string& name, const std::string& desc, int max_weight) :
+      Object(weight,value,name,desc), m_max_weight(max_weight) {}
   int weight() const;
   int value() const;
 
   bool add(Object* o);
   bool remove(Object* o);
+
+  void interact(Character* c);
 
   int max_weight() const;
 

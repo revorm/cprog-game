@@ -12,9 +12,9 @@ class Environment
 {
 public:
   enum Direction { NORTH = 0, SOUTH = 1, EAST = 2, WEST = 3};
-  virtual Direction directions() const = 0;
+  virtual const std::vector<Direction>& directions() const = 0;
   virtual Environment* neighbor(Direction) const = 0;
-  virtual std::string description() const = 0;
+  virtual const std::string& description() const = 0;
   virtual void enter(Character*); // allow override
   virtual void leave(Character*); // allow override
   virtual bool pick_up(Object* o); // allow override

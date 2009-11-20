@@ -12,14 +12,14 @@ public:
   int weight() const;
   int value() const;
 
-  bool add(Object* o);
-  bool remove(Object* o);
+  virtual bool add(Object* o);
+  virtual bool remove(Object* o);
 
   void interact(Character* c);
 
   int max_weight() const;
 
-private:
+protected:
   int m_max_weight;
   std::vector<Object*> m_contents;
 };

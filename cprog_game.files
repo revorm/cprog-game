@@ -1,4 +1,6 @@
 game.cpp
+gameengine.cpp
+gameengine.h
 .gitignore
 libs.mak
 Makefile
@@ -10,6 +12,8 @@ env/environment.h
 env/Makefile
 obj/container.cpp
 obj/container.h
+obj/ideacontainer.cpp
+obj/ideacontainer.h
 obj/idea.cpp
 obj/idea.h
 obj/Makefile

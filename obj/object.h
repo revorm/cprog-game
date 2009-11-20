@@ -12,6 +12,8 @@ public:
   virtual int value() const;
   virtual void interact(Character*) = 0;
 
+  virtual ~Object() {}
+
 protected:
   Object(int weight, int value, const std::string& name, const std::string& desc)
       : m_weight(weight), m_value(value), m_name(name), m_description(desc) {}

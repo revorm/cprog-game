@@ -11,6 +11,8 @@ class Object;
 class Environment
 {
 public:
+  virtual ~Environment();
+
   enum Direction { NORTH = 0, SOUTH = 1, EAST = 2, WEST = 3};
   const std::map<Direction,Environment*> directions() const;
   Environment* neighbor(Direction) const;

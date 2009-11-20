@@ -9,6 +9,8 @@
 class Character
 {
 public:
+  virtual ~Character();
+
   const std::string& type() const;
   const std::string& name() const;
   Environment* environment() const;

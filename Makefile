@@ -7,7 +7,7 @@ all: project_file $(SUBDIRS) game
 project_file: cprog_game.files 
 	./update_project_file.sh
 
-game: game.cpp memhandler.cpp
+game: game.cpp gameengine.o
 
 $(SUBDIRS):
 	$(MAKE) CXXFLAGS="$(CXXFLAGS)" -C $@

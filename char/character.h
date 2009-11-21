@@ -17,6 +17,7 @@ public:
   virtual void pick_up(Object* o); // allow override
   virtual void drop(Object* o); // allow override
 
+  virtual bool is_interactive() const = 0;
   virtual void action() = 0;
   virtual void talk_to(Character*) = 0;
 

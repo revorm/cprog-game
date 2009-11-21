@@ -3,6 +3,7 @@
 
 #include <string>
 #include <map>
+#include <stdexcept>
 
 class Object;
 class Environment;
@@ -25,7 +26,10 @@ public:
   static Environment* resolve_env(const std::string& name);
 private:
   friend void run_game();
-  GameEngine() { s_instance = this; }
+  GameEngine() { if(s_instance == 0) s_instance = this;
+                 else throw std::logic_error(
+                     "Already created an instance of GameEngine"); }
+
   static GameEngine* s_instance;
   std::map<std::string,Object*> m_objects;
   std::map<std::string,Character*> m_characters;

@@ -1,9 +1,13 @@
 
+OBJS := $(patsubst %.cpp,%.o,$(wildcard *.cpp))
+
 LIB = $(TARGET).so
 
-../libs/$(LIB): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) -shared $(OBJS) -o ../libs/$(LIB) -L ../libs -lgameengine
-	chmod 0644 ../libs/$(LIB)	
+LIBFILE = ../libs/$(LIB)
+
+LIBFILE: $(OBJS)
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) -shared $(OBJS) -o $(LIBFILE) -L ../libs -lgameengine
+	chmod 0644 $(LIBFILE)
 
 clean:
-	rm -f $(OBJS) ../libs/$(LIB)
+	rm -f $(OBJS) $(LIBFILE)

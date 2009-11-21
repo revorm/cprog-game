@@ -20,6 +20,8 @@ public:
   virtual void action() = 0;
   virtual void talk_to(Character*) = 0;
 
+  const std::vector<Object*>& inventory() const;
+
 protected:
   Character(const std::string& name,
             const std::string& type

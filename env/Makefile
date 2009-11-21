@@ -1,5 +1,5 @@
 TARGET=libenv
 
-OBJS=environment.o
+OBJS=environment.o computerroom.o outdoor.o
 
 include ../libs.mak

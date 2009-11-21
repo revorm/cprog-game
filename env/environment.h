@@ -28,7 +28,7 @@ public:
   virtual void drop(Object* o);
 
 protected:
-  Environment(std::string& name, std::string& desc) : GameElement(name), m_description(desc) {}
+  Environment(const std::string& name, const std::string& desc) : GameElement(name), m_description(desc) {}
   void add_neighbor(Direction d, Environment* e);
   std::string m_description;
   std::vector<Object*> m_objects;

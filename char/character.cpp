@@ -24,3 +24,7 @@ void Character::pick_up(Object* o) {
 void Character::drop(Object* o) {
   m_current_environment->drop(o);
 }
+
+const std::vector<Object*>& Character::inventory() const {
+  return m_inventory;
+}

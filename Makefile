@@ -1,13 +1,19 @@
 CXXFLAGS += -Wall -O2 -fPIC
-LDFLAGS += -L. -lenv -lobj -lchar -Wl,-rpath=$(shell pwd)
+LDFLAGS += -Llibs/ -lenv -lobj -lchar -lgameengine -Wl,-R libs/
 SUBDIRS = char env obj
 
-all: project_file $(SUBDIRS) game 
+all: project_file engine $(SUBDIRS) game
 
 project_file: cprog_game.files 
 	./update_project_file.sh
 
-game: game.cpp gameengine.o
+engine: libs/libgameengine.so
+
+game: game.cpp
+
+libs/libgameengine.so: gameengine.o
+	$(CXX) $(CXXFLAGS) -shared gameengine.o -o ./libs/libgameengine.so 
+	chmod 0644 libs/libgameengine.so
 
 $(SUBDIRS):
 	$(MAKE) CXXFLAGS="$(CXXFLAGS)" -C $@

@@ -6,7 +6,7 @@ int IdeaContainer::value() const {
   int accum = 0;
   for(std::vector<Object*>::const_iterator it = m_contents.begin(); it != m_contents.end(); ++it) {
     Idea* i = dynamic_cast<Idea*>(*it);
-    accum += (i->is_good() ? 1 : -1);
+    accum += (i->is_good() ? i->value() : -i->value());
   }
   return accum;
 }

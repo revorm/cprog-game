@@ -11,6 +11,8 @@ class Character;
 class GameEngine
 {
 public:
+  const static std::string IDEA_CONTAINER_NAME;
+  const static int NUM_IDEAS_NEEDED;
 
   ~GameEngine();
 

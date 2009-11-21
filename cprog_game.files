@@ -1,4 +1,5 @@
 game.cpp
+gameelement.h
 gameengine.cpp
 gameengine.h
 .gitignore
@@ -7,11 +8,17 @@ Makefile
 char/character.cpp
 char/character.h
 char/Makefile
+env/computerroom.cpp
+env/computerroom.h
 env/environment.cpp
 env/environment.h
 env/Makefile
+env/outdoor.cpp
+env/outdoor.h
 obj/container.cpp
 obj/container.h
+obj/gamesourcetarball.cpp
+obj/gamesourcetarball.h
 obj/ideacontainer.cpp
 obj/ideacontainer.h
 obj/idea.cpp
@@ -19,8 +26,3 @@ obj/idea.h
 obj/Makefile
 obj/object.cpp
 obj/object.h
-gameelement.h
-env/computerroom.h
-env/computerroom.cpp
-env/outdoor.h
-env/outdoor.cpp

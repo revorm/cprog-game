@@ -9,9 +9,6 @@
 
 void run_game() {
   GameEngine g;
-
-  std::string n("nisse");
-  GameEngine::add_to_game(n,new IdeaContainer(n));
 }
 
 int main(int argc, char **argv) {

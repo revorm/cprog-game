@@ -4,6 +4,9 @@
 #include "char/character.h"
 #include "obj/object.h"
 
+const std::string GameEngine::IDEA_CONTAINER_NAME("idea_bag");
+const int GameEngine::NUM_IDEAS_NEEDED = 4;
+
 GameEngine* GameEngine::s_instance = 0;
 
 GameEngine::~GameEngine() {

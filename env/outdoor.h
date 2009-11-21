@@ -6,7 +6,8 @@
 class Outdoor : public Environment
 {
 public:
-    Outdoor();
+  Outdoor(const std::string& name, const std::string& desc) :
+      Environment(name,desc) {}
 };
 
 #endif // OUTDOOR_H

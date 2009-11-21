@@ -16,14 +16,15 @@ public:
   const static int NUM_IDEAS_NEEDED;
 
   ~GameEngine();
+  static GameEngine* get();
 
-  static void add_to_game(const std::string& name, Object* o);
-  static void add_to_game(const std::string& name, Character* c);
-  static void add_to_game(const std::string& name, Environment* e);
+  void add_to_game(const std::string& name, Object* o);
+  void add_to_game(const std::string& name, Character* c);
+  void add_to_game(const std::string& name, Environment* e);
 
-  static Object* resolve_obj(const std::string& name);
-  static Character* resolve_char(const std::string& name);
-  static Environment* resolve_env(const std::string& name);
+  Object* resolve_obj(const std::string& name) const;
+  Character* resolve_char(const std::string& name) const;
+  Environment* resolve_env(const std::string& name) const;
 private:
   friend void run_game();
   GameEngine() { if(s_instance == 0) s_instance = this;

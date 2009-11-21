@@ -1,5 +1,7 @@
 #include "character.h"
 
+const int Character::START_ENERGY = 100;
+
 const std::string& Character::type() const {
   return m_type;
 }
@@ -27,4 +29,12 @@ void Character::drop(Object* o) {
 
 const std::vector<Object*>& Character::inventory() const {
   return m_inventory;
+}
+
+int Character::energy() const {
+  return m_energy;
+}
+
+void Character::add_energy(int add) {
+  m_energy += add;
 }

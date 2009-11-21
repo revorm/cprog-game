@@ -12,7 +12,6 @@ class Character : public GameElement
 public:
   const static int START_ENERGY;
 
-  const std::string& type() const;
   Environment* environment() const;
 
   virtual void go(Environment::Direction d); // allow override
@@ -27,10 +26,7 @@ public:
   void add_energy(int add);
 
 protected:
-  Character(const std::string& name,
-            const std::string& type
-            ) : GameElement(name) ,m_type(type), m_energy(START_ENERGY) {}
-  std::string m_type;
+  Character(const std::string& name) : GameElement(name), m_energy(START_ENERGY) {}
   Environment* m_current_environment;
   std::vector<Object*> m_inventory;
   int m_energy;

@@ -7,7 +7,15 @@ libs.mak
 Makefile
 char/character.cpp
 char/character.h
+char/examiner.cpp
+char/examiner.h
+char/friend.cpp
+char/friend.h
 char/Makefile
+char/oracle.cpp
+char/oracle.h
+char/player.cpp
+char/player.h
 env/computerroom.cpp
 env/computerroom.h
 env/environment.cpp

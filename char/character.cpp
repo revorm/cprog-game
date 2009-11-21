@@ -2,10 +2,6 @@
 
 const int Character::START_ENERGY = 100;
 
-const std::string& Character::type() const {
-  return m_type;
-}
-
 Environment* Character::environment() const {
   return m_current_environment;
 }

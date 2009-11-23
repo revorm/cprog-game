@@ -4,6 +4,7 @@
 #include <string>
 #include <map>
 #include <stdexcept>
+#include <ostream>
 
 class Object;
 class Environment;
@@ -18,9 +19,15 @@ public:
   ~GameEngine();
   static GameEngine* get();
 
+  std::ostream& out();
+
   void add_to_game(const std::string& name, Object* o);
   void add_to_game(const std::string& name, Character* c);
   void add_to_game(const std::string& name, Environment* e);
+
+  void erase_and_free(const std::string& name, Object* o);
+  void erase_and_free(const std::string& name, Character* o);
+  void erase_and_free(const std::string& name, Environment* o);
 
   Object* resolve_obj(const std::string& name) const;
   Character* resolve_char(const std::string& name) const;

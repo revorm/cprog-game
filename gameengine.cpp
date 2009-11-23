@@ -4,6 +4,8 @@
 #include "char/character.h"
 #include "obj/object.h"
 
+#include <iostream>
+
 const std::string GameEngine::IDEA_CONTAINER_NAME("idea_bag");
 const int GameEngine::NUM_IDEAS_NEEDED = 4;
 
@@ -27,6 +29,10 @@ GameEngine::~GameEngine() {
 GameEngine* GameEngine::get() {
   return s_instance != 0 ? s_instance :
       throw std::logic_error("GameEngine not initialized");
+}
+
+std::ostream& GameEngine::out() {
+  return std::cout;
 }
 
 void GameEngine::add_to_game(const std::string& name, Object* o) {

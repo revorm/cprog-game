@@ -12,6 +12,7 @@ void run_game() {
 }
 
 int main(int argc, char **argv) {
+  std::ios_base::sync_with_stdio(false);
   run_game();
   return 0;
 }

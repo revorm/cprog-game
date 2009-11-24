@@ -9,8 +9,10 @@ public:
   const static int WEIGHT;
   const static int VALUE;
 
-  Coffee(const std::string& name, const std::string& desc) :
-      Object(name,WEIGHT,VALUE,desc) {}
+  const static std::string DESCRIPTION;
+
+  Coffee(const std::string& name) :
+      Object(name,WEIGHT,VALUE,DESCRIPTION) {}
 
   void interact(Character* c);
 };

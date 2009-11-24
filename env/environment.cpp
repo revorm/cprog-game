@@ -40,18 +40,24 @@ void Environment::leave(Character* c) {
   }
 }
 
-bool Environment::pick_up(Object* o) {
-  std::vector<Object*>::iterator it =
-      std::find(m_objects.begin(),m_objects.end(),o);
+Object* Environment::get_item(const std::string& name) {
+  std::map<std::string,Object*>::iterator it = m_objects.find(name);
   if(it != m_objects.end()) {
+    Object* o = it->second;
     m_objects.erase(it);
-    return true;
+    return o;
   }
-  return false;
+  return 0;
 }
 
-void Environment::drop(Object* o) {
-  m_objects.push_back(o);
+void Environment::put_item(const std::string& name, Object* o) {
+  m_objects.insert(std::make_pair(name,o));
+}
+
+std::pair<Environment::Inventory_t::const_iterator,
+    Environment::Inventory_t::const_iterator>
+    Environment::objects() const {
+  return std::make_pair(m_objects.begin(),m_objects.end());
 }
 
 void Environment::add_neighbor(Direction d, Environment* e) {

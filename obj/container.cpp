@@ -44,7 +44,7 @@ bool Container::remove(Object* o) {
  */
 void Container::interact(Character* c) {
   std::for_each(m_contents.begin(),m_contents.end(),
-                std::bind1st(std::mem_fun(&Environment::drop),c->environment()));
+                std::bind1st(std::mem_fun(&Environment::put_item),c->environment()));
   m_contents.clear();
 }
 

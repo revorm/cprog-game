@@ -5,6 +5,8 @@ gameengine.h
 .gitignore
 libs.mak
 Makefile
+playercontroller.cpp
+playercontroller.h
 char/character.cpp
 char/character.h
 char/examiner.cpp
@@ -25,6 +27,8 @@ env/outdoor.cpp
 env/outdoor.h
 env/sleven.cpp
 env/sleven.h
+env/theescape.cpp
+env/theescape.h
 obj/coffee.cpp
 obj/coffee.h
 obj/container.cpp

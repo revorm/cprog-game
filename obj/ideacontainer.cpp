@@ -2,6 +2,8 @@
 
 #include "idea.h"
 
+const std::string IdeaContainer::ITEM_NAME("ideabag");
+
 int IdeaContainer::value() const {
   int accum = 0;
   for(std::vector<Object*>::const_iterator it = m_contents.begin(); it != m_contents.end(); ++it) {

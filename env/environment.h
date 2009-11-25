@@ -12,13 +12,13 @@ class Object;
 class Environment : public GameElement
 {
 public:
-  typedef std::map<std::string,Object*> Inventory_t;
-
   enum Direction { NORTH = 0, SOUTH = 1, EAST = 2, WEST = 3};
+
+  typedef std::map<std::string,Object*> Inventory_t;
+  typedef std::map<Direction,Environment*> Direction_map;
   const std::map<Direction,Environment*> directions() const;
   Environment* neighbor(Direction) const;
   virtual std::string description() const;
-  virtual void interact(Character*) {} // default interact is a no-op, but allow override
 
   // allow override to be able to hook in on a character entering / exiting
   virtual void enter(Character*);
@@ -26,10 +26,9 @@ public:
 
   // allow override to be able to hook in when an object is picked up
   virtual Object* get_item(const std::string& name);
-  virtual void put_item(const std::string& name, Object* o);
+  virtual void put_item(Object* o);
 
-  std::pair<Inventory_t::const_iterator,Inventory_t::const_iterator>
-      objects() const;
+  const Inventory_t objects() const;
 
 
 protected:

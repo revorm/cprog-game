@@ -9,10 +9,10 @@ project_file: cprog_game.files
 
 engine: libs/libgameengine.so
 
-game: game.cpp
+game: game.o playercontroller.o
 
-libs/libgameengine.so: gameengine.o
-	$(CXX) $(CXXFLAGS) -shared gameengine.o -o ./libs/libgameengine.so 
+libs/libgameengine.so: gameengine.cpp
+	$(CXX) $(CXXFLAGS) -shared gameengine.cpp -o ./libs/libgameengine.so 
 	chmod 0644 libs/libgameengine.so
 
 $(SUBDIRS):
@@ -21,7 +21,7 @@ $(SUBDIRS):
 .PHONY: $(SUBDIRS) clean
 
 clean:
-	rm -f *.o game
+	rm -f *.o game libs/libgameengine.so
 	for dir in $(SUBDIRS); do \
 		$(MAKE) -C $$dir clean; \
 	done

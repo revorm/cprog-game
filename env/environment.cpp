@@ -2,6 +2,8 @@
 #include <algorithm>
 #include <sstream>
 
+#include "../obj/object.h"
+
 const std::map<Environment::Direction,Environment*> Environment::directions() const {
   return m_neighbors;
 }
@@ -50,14 +52,12 @@ Object* Environment::get_item(const std::string& name) {
   return 0;
 }
 
-void Environment::put_item(const std::string& name, Object* o) {
-  m_objects.insert(std::make_pair(name,o));
+void Environment::put_item(Object* o) {
+  m_objects.insert(std::make_pair(o->name(),o));
 }
 
-std::pair<Environment::Inventory_t::const_iterator,
-    Environment::Inventory_t::const_iterator>
-    Environment::objects() const {
-  return std::make_pair(m_objects.begin(),m_objects.end());
+const Environment::Inventory_t Environment::objects() const {
+  return m_objects;
 }
 
 void Environment::add_neighbor(Direction d, Environment* e) {

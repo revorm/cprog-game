@@ -4,7 +4,7 @@
 #include "char/character.h"
 #include "obj/object.h"
 
-#include <iostream>
+#include <cstdlib>
 
 const std::string GameEngine::IDEA_CONTAINER_NAME("idea_bag");
 const int GameEngine::NUM_IDEAS_NEEDED = 4;
@@ -31,42 +31,42 @@ GameEngine* GameEngine::get() {
       throw std::logic_error("GameEngine not initialized");
 }
 
-std::ostream& GameEngine::out() {
-  return std::cout;
-}
-
 void GameEngine::add_to_game(const std::string& name, Object* o) {
-  m_objects[name] = o;
+  m_objects.insert(std::make_pair(name,o));
 }
 
 void GameEngine::add_to_game(const std::string& name, Environment* e) {
-  m_environments[name] = e;
+  m_environments.insert(std::make_pair(name,e));
 }
 
 void GameEngine::add_to_game(const std::string& name, Character* c) {
-  m_characters[name] = c;
+  m_characters.insert(std::make_pair(name,c));
 }
 
-Object* GameEngine::resolve_obj(const std::string& name) const {
-  std::map<std::string,Object*>::const_iterator it = m_objects.find(name);
-  if(it != m_objects.end()) {
-    return it->second;
+void GameEngine::erase_and_free(const std::string &name, Object *o) {
+  typedef std::multimap<std::string,Object*> objmap;
+  std::pair<objmap::iterator,objmap::iterator> p = m_objects.equal_range(name);
+  for(objmap::iterator it = p.first; it != p.second; ++it) {
+    if(it->second == o) {
+      m_objects.erase(it);
+      return;
+    }
   }
-  return 0;
 }
 
-Environment* GameEngine::resolve_env(const std::string& name) const {
-  std::map<std::string,Environment*>::const_iterator it = m_environments.find(name);
-  if(it != m_environments.end()) {
-    return it->second;
+
+void GameEngine::main_loop() {
+  init();
+  m_running = true;
+  while(m_running) {
+    // foreach char do char->action()
   }
-  return 0;
 }
 
-Character* GameEngine::resolve_char(const std::string& name) const {
-  std::map<std::string,Character*>::const_iterator it = m_characters.find(name);
-  if(it != m_characters.end()) {
-    return it->second;
-  }
-  return 0;
+void GameEngine::game_finished() {
+  m_running = false;
+}
+
+void GameEngine::init() {
+  srand(unsigned(time(NULL)));
 }

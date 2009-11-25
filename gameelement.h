@@ -3,9 +3,18 @@
 
 #include <string>
 
+class Character;
+
 class GameElement
 {
 public:
+  /*!
+    Interact has a sort of reverse semantic.
+    If a person wants to interact with another
+    game entity it will call that->interact(this)
+   */
+  virtual void interact(Character*) = 0;
+
   const std::string& name() const {
     return m_name;
   }

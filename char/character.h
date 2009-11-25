@@ -21,11 +21,10 @@ public:
   virtual void drop(const std::string& name); // allow override
 
   virtual void action() = 0;
-  virtual void talk_to(Character*) = 0;
 
+  virtual void inform(const std::string& s);
 
-  std::pair<Inventory_t::const_iterator,Inventory_t::const_iterator>
-      inventory() const;
+  const Inventory_t inventory() const;
   int energy() const;
   void add_energy(int add);
 

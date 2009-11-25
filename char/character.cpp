@@ -4,6 +4,8 @@
 
 const int Character::START_ENERGY = 100;
 
+void Character::inform(const std::string &s) {}
+
 Environment* Character::environment() const {
   return m_current_environment;
 }
@@ -25,15 +27,13 @@ void Character::pick_up(const std::string& name) {
 void Character::drop(const std::string& name) {
   Inventory_t::iterator it = m_inventory.find(name);
   if(it != m_inventory.end()) {
-    m_current_environment->put_item(it->first,it->second);
+    m_current_environment->put_item(it->second);
     m_inventory.erase(it);
   }
 }
 
-std::pair<Character::Inventory_t::const_iterator,
-    Character::Inventory_t::const_iterator>
-    Character::inventory() const {
-  return std::make_pair(m_inventory.begin(),m_inventory.end());
+const Character::Inventory_t Character::inventory() const {
+  return m_inventory;
 }
 
 int Character::energy() const {

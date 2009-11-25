@@ -9,8 +9,12 @@ public:
   Examiner(const std::string& name) : Character(name) {}
 
   void action();
-  void talk_to(Character * c);
+  void interact(Character * c);
 
+  void inform(const std::string &s);
+private:
+  bool m_examining;
+  const static int EXAMINER_MOOD;
 };
 
 #endif // EXAMINER_H

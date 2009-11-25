@@ -10,11 +10,8 @@ class Object : public GameElement
 public:
   virtual int weight() const; // allow override, for containers for example
   virtual int value() const;
-  virtual void interact(Character*) = 0;
 
   virtual std::string description() const;
-
-  virtual ~Object() {}
 
 protected:
   Object(const std::string& name, int weight, int value, const std::string& desc)

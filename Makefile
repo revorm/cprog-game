@@ -1,6 +1,14 @@
 CXXFLAGS += -Wall -O2 -fPIC
-LDFLAGS += -Llibs/ -lenv -lobj -lchar -lgameengine -Wl,-R libs/
+LDFLAGS += -Llibs/ -lenv -lobj -lchar -lgameengine -Wl,-rpath libs/
 SUBDIRS = char env obj
+
+SHLIB_FLAGS = -shared
+LIB_SUFFIX = .so
+ifeq ($(shell uname -s),Darwin)
+SHLIB_FLAGS = -dynamiclib -Wl,-undefined,dynamic_lookup
+LIB_SUFFIX = .dylib
+endif
+
 
 all: project_file engine $(SUBDIRS) game
 
@@ -10,10 +18,11 @@ project_file: cprog_game.files
 engine: libs/libgameengine.so
 
 game: game.o playercontroller.o
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $^ -o $@ 
 
-libs/libgameengine.so: gameengine.cpp
-	$(CXX) $(CXXFLAGS) -shared gameengine.cpp -o ./libs/libgameengine.so 
-	chmod 0644 libs/libgameengine.so
+libs/libgameengine$(LIB_SUFFIX): gameengine.cpp
+	$(CXX) $(CXXFLAGS) $(SHLIB_FLAGS) gameengine.cpp -o ./libs/libgameengine$(LIB_SUFFIX) 
+	chmod 0644 libs/libgameengine$(LIB_SUFFIX)
 
 $(SUBDIRS):
 	$(MAKE) CXXFLAGS="$(CXXFLAGS)" -C $@
@@ -21,7 +30,7 @@ $(SUBDIRS):
 .PHONY: $(SUBDIRS) clean
 
 clean:
-	rm -f *.o game libs/libgameengine.so
+	rm -f *.o game libs/libgameengine$(LIB_SUFFIX)
 	for dir in $(SUBDIRS); do \
 		$(MAKE) -C $$dir clean; \
 	done

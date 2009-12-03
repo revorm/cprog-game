@@ -12,7 +12,7 @@ LIB = $(TARGET)$(LIB_SUFFIX)
 LIBFILE = ../libs/$(LIB)
 
 LIBFILE: $(OBJS)
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(SHLIB_FLAGS) $(OBJS) -o $(LIBFILE) -L../libs -lgameengine
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(SHLIB_FLAGS) $(OBJS) -o $(LIBFILE) -L../libs -Llibs/ -lgameengine
 	chmod 0644 $(LIBFILE)
 
 clean:

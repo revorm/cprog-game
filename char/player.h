@@ -2,8 +2,7 @@
 #define PLAYER_H
 
 #include "character.h"
-
-class PlayerController;
+#include "../playercontroller.h"
 
 class Player : public Character
 {

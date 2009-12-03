@@ -5,3 +5,5 @@ game
 *.so
 *.
 .*.swp
+.DS_Store
+*.dylib

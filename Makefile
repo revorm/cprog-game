@@ -18,8 +18,8 @@ game: game.o playercontroller.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $^ -o $@ 
 
 libs/libgameengine$(LIB_SUFFIX): gameengine.cpp
-	$(CXX) $(CXXFLAGS) $(SHLIB_FLAGS) gameengine.cpp -o ./libs/libgameengine$(LIB_SUFFIX) 
-	chmod 0644 libs/libgameengine$(LIB_SUFFIX)
+	$(CXX) $(CXXFLAGS) $(SHLIB_FLAGS) $^ -o $@
+	chmod 0644 $@
 
 $(SUBDIRS):
 	$(MAKE) CXXFLAGS="$(CXXFLAGS)" -C $@

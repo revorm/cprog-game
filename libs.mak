@@ -1,12 +1,18 @@
+SHLIB_FLAGS = -shared
+LIB_SUFFIX = .so
+ifeq ($(shell uname -s),Darwin)
+SHLIB_FLAGS = -dynamiclib -Wl,-undefined,dynamic_lookup
+LIB_SUFFIX = .dylib
+endif
 
 OBJS := $(patsubst %.cpp,%.o,$(wildcard *.cpp))
 
-LIB = $(TARGET).so
+LIB = $(TARGET)$(LIB_SUFFIX)
 
 LIBFILE = ../libs/$(LIB)
 
 LIBFILE: $(OBJS)
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) -shared $(OBJS) -o $(LIBFILE) -L ../libs -lgameengine
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(SHLIB_FLAGS) $(OBJS) -o $(LIBFILE) -L../libs -lgameengine
 	chmod 0644 $(LIBFILE)
 
 clean:

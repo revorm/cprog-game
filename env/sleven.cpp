@@ -4,7 +4,7 @@
 #include "../obj/object.h"
 #include "../obj/coffee.h"
 
-#include "../gameengine.h"
+#include "../engine/gameengine.h"
 
 #include <algorithm>
 #include <sstream>

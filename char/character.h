@@ -24,7 +24,7 @@ public:
 
   virtual void inform(const std::string& s);
 
-  const Inventory_t inventory() const;
+  const Inventory_t& inventory() const;
   int energy() const;
   void add_energy(int add);
 

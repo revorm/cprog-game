@@ -1,5 +1,5 @@
 #include "outdoor.h"
-#include "../gameengine.h"
+#include "../engine/gameengine.h"
 #include "../obj/object.h"
 
 void Outdoor::put_item(Object *o) {

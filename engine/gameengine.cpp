@@ -1,8 +1,10 @@
 #include "gameengine.h"
 
-#include "env/environment.h"
-#include "char/character.h"
-#include "obj/object.h"
+#include "../env/environment.h"
+#include "../char/character.h"
+#include "../obj/object.h"
+#include "../env/computerroom.h"
+#include "../char/player.h"
 
 #include <cstdlib>
 
@@ -54,6 +56,13 @@ void GameEngine::erase_and_free(const std::string &name, Object *o) {
   }
 }
 
+Object* GameEngine::resolve_obj(const std::string &name) const {
+  ObjectContainer::const_iterator it = m_objects.find(name);
+  if(it != m_objects.end()) {
+    return it->second;
+  }
+  return 0;
+}
 
 void GameEngine::main_loop() {
   init();
@@ -69,4 +78,11 @@ void GameEngine::game_finished() {
 
 void GameEngine::init() {
   srand(unsigned(time(NULL)));
+  Environment* e = new ComputerRoom(std::string("room"),std::string("Computer room"));
+  Player* p = new Player(std::string("player"));
+  p->inventory().size();
+  add_to_game(std::string("room"),e);
+  add_to_game(std::string("player"),p);
+  e->enter(p);
+  e->interact(p);
 }

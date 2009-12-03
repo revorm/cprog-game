@@ -1,7 +1,7 @@
 #include "coffee.h"
 #include "../char/character.h"
 
-#include "../gameengine.h"
+#include "../engine/gameengine.h"
 
 #include <sstream>
 

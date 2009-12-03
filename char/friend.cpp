@@ -2,6 +2,7 @@
 #include "player.h"
 
 #include "../obj/idea.h"
+#include "../env/outdoor.h"
 
 #include <cstdlib>
 
@@ -19,7 +20,12 @@ void Friend::action() {
 void Friend::interact(Character *c) {
   Player* p = dynamic_cast<Player*>(c);
   if(p) {
-    p->inform(std::string("Here's an idea for your game!"));
-    c->environment()->put_item(m_idea);
+    Outdoor* e = dynamic_cast<Outdoor*>(environment());
+    if(e) {
+      p->inform(std::string("Here's an idea for your game!"));
+      e->put_item(m_idea);
+    } else {
+      p->inform(std::string("It's too windy here, you'll not understand it."));
+    }
   }
 }

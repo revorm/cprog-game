@@ -3,7 +3,7 @@
 
 #include "character.h"
 
-class PlayerController;
+#include "../playercontroller.h"
 
 class Player : public Character
 {
@@ -13,6 +13,8 @@ public:
   void inform(const std::string &s);
 
   void action();
+
+  void interact(Character *) {}
 
 private:
   friend class PlayerController;

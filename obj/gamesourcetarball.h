@@ -6,11 +6,12 @@
 class GameSourceTarball : public Object
 {
 public:
-  GameSourceTarball(const std::string& name, int value, const std::string& desc) :
-      Object(name,4,value,desc) {}
+  GameSourceTarball(int value, const std::string& desc) :
+      Object(GAME_NAME,4,value,desc) {}
 
   void interact(Character* c);
 
+  const static std::string GAME_NAME;
 };
 
 #endif // GAMESOURCETARBALL_H

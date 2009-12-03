@@ -16,6 +16,10 @@ public:
   const static std::string IDEA_CONTAINER_NAME;
   const static int NUM_IDEAS_NEEDED;
 
+  typedef std::multimap<std::string,Object*> ObjectContainer;
+  typedef std::multimap<std::string,Character*> CharacterContainer;
+  typedef std::multimap<std::string,Environment*> EnvironmentContainer;
+
   ~GameEngine();
   static GameEngine* get();
 
@@ -27,9 +31,9 @@ public:
   void erase_and_free(const std::string& name, Character* o);
   void erase_and_free(const std::string& name, Environment* o);
 
-  /*Object* resolve_obj(const std::string& name) const;
+  Object* resolve_obj(const std::string& name) const;
   Character* resolve_char(const std::string& name) const;
-  Environment* resolve_env(const std::string& name) const;*/
+  Environment* resolve_env(const std::string& name) const;
 
   void game_finished();
 
@@ -42,9 +46,9 @@ private:
                      "Already created an instance of GameEngine"); }
 
   static GameEngine* s_instance;
-  std::multimap<std::string,Object*> m_objects;
-  std::multimap<std::string,Character*> m_characters;
-  std::multimap<std::string,Environment*> m_environments;
+  ObjectContainer m_objects;
+  CharacterContainer m_characters;
+  EnvironmentContainer m_environments;
   bool m_running;
 
 };

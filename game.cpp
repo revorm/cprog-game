@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "gameengine.h"
+#include "engine/gameengine.h"
 #include "obj/container.h"
 #include "char/character.h"
 #include "env/environment.h"
@@ -9,6 +9,7 @@
 
 void run_game() {
   GameEngine g;
+  g.main_loop();
 }
 
 int main(int argc, char **argv) {

@@ -1,6 +1,6 @@
 #include "character.h"
 
-#include "../gameengine.h"
+#include "../engine/gameengine.h"
 
 const int Character::START_ENERGY = 100;
 
@@ -32,7 +32,7 @@ void Character::drop(const std::string& name) {
   }
 }
 
-const Character::Inventory_t Character::inventory() const {
+const Character::Inventory_t& Character::inventory() const {
   return m_inventory;
 }
 

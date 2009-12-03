@@ -1,7 +1,5 @@
 game.cpp
 gameelement.h
-gameengine.cpp
-gameengine.h
 .gitignore
 libs.mak
 Makefile
@@ -18,6 +16,9 @@ char/oracle.cpp
 char/oracle.h
 char/player.cpp
 char/player.h
+engine/gameengine.cpp
+engine/gameengine.h
+engine/Makefile
 env/computerroom.cpp
 env/computerroom.h
 env/environment.cpp

@@ -1,5 +1,5 @@
 CXXFLAGS += -Wall -O2 -fPIC
-LDFLAGS += -Llibs/ -lenv -lobj -lchar -lgameengine -Wl,-rpath libs/
+LDFLAGS += -Llibs/ -lenv -lobj -lchar -lgameengine -Wl,-rpath,libs/
 SUBDIRS = char env obj
 
 SHLIB_FLAGS = -shared

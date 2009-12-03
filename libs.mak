@@ -1,7 +1,7 @@
 SHLIB_FLAGS = -shared
 LIB_SUFFIX = .so
 ifeq ($(shell uname -s),Darwin)
-SHLIB_FLAGS = -dynamiclib -Wl,-undefined,dynamic_lookup
+SHLIB_FLAGS = -dynamiclib -Wl,-undefined,dynamic_lookup,-install_name,libs/$(LIBFILE)
 LIB_SUFFIX = .dylib
 endif
 

@@ -15,7 +15,7 @@ all: project_file engine $(SUBDIRS) game
 project_file: cprog_game.files 
 	./update_project_file.sh
 
-engine: libs/libgameengine.so
+engine: libs/libgameengine$(LIB_SUFFIX)
 
 game: game.o playercontroller.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $^ -o $@ 

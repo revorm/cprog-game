@@ -8,7 +8,7 @@ class PlayerController;
 class Player : public Character
 {
 public:
-  Player(const std::string& name, PlayerController* p) : Character(name), m_controller(p) {}
+  Player(const std::string& name) : Character(name), m_controller(new PlayerController(this)) {}
 
   void inform(const std::string &s);
 

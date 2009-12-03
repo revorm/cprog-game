@@ -10,10 +10,7 @@ LIB_SUFFIX = .dylib
 endif
 
 
-all: project_file engine $(SUBDIRS) game
-
-project_file: cprog_game.files 
-	./update_project_file.sh
+all: engine $(SUBDIRS) game
 
 engine: libs/libgameengine$(LIB_SUFFIX)
 

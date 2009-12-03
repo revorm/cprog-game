@@ -9,11 +9,12 @@ OBJS := $(patsubst %.cpp,%.o,$(wildcard *.cpp))
 
 LIB = $(TARGET)$(LIB_SUFFIX)
 
-LIBFILE = ../libs/$(LIB)
+LIBFILE = $(LIB)
 
 LIBFILE: $(OBJS)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(SHLIB_FLAGS) $(OBJS) -o $(LIBFILE) 
-	chmod 0644 $(LIBFILE)
+	cp -f $(LIBFILE) ../libs/
+	chmod 0644 ../libs/$(LIBFILE)
 
 clean:
-	rm -f $(OBJS) $(LIBFILE)
+	rm -f $(OBJS) $(LIBFILE) ../libs/$(LIBFILE)

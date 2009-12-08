@@ -1,15 +1,10 @@
 #include "gameengine.h"
 
-#include "../env/environment.h"
 #include "../char/character.h"
+#include "../env/environment.h"
 #include "../obj/object.h"
-#include "../env/computerroom.h"
-#include "../char/player.h"
 
 #include <cstdlib>
-
-const std::string GameEngine::IDEA_CONTAINER_NAME("idea_bag");
-const int GameEngine::NUM_IDEAS_NEEDED = 4;
 
 GameEngine* GameEngine::s_instance = 0;
 
@@ -66,9 +61,10 @@ Object* GameEngine::resolve_obj(const std::string &name) const {
 
 void GameEngine::main_loop() {
   init();
-  m_running = true;
   while(m_running) {
-    // foreach char do char->action()
+    for(CharacterContainer::const_iterator it = m_characters.begin(); it != m_characters.end(); ++it) {
+      it->second->action();
+    }
   }
 }
 
@@ -76,13 +72,3 @@ void GameEngine::game_finished() {
   m_running = false;
 }
 
-void GameEngine::init() {
-  srand(unsigned(time(NULL)));
-  Environment* e = new ComputerRoom(std::string("room"),std::string("Computer room"));
-  Player* p = new Player(std::string("player"));
-  p->inventory().size();
-  add_to_game(std::string("room"),e);
-  add_to_game(std::string("player"),p);
-  e->enter(p);
-  e->interact(p);
-}

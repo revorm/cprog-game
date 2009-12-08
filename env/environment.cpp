@@ -20,7 +20,7 @@ Environment* Environment::neighbor(Direction d) const {
 std::string Environment::description() const {
   static const char* exit_names[] = { "north", "south", "east", "west" };
   std::stringstream s(std::stringstream::in);
-  s << m_description;
+  s << m_description << std::endl;
   s << "There are exits to the ";
   for(std::map<Direction,Environment*>::const_iterator it = m_neighbors.begin()
     ; it != m_neighbors.end(); ++it) {

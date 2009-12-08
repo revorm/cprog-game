@@ -6,7 +6,7 @@
 class Examiner : public Character
 {
 public:
-  Examiner(const std::string& name) : Character(name), m_examining(false), m_should_exit(false) {}
+  Examiner(const std::string& name, Environment* start_env) : Character(name,start_env), m_examining(false), m_should_exit(false) {}
 
   void action();
   void interact(Character * c);

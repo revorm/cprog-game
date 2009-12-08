@@ -30,6 +30,9 @@ public:
 
   const Inventory_t objects() const;
 
+  void interact(Character *) {}
+
+  friend class GameEngine;
 
 protected:
   Environment(const std::string& name, const std::string& desc) : GameElement(name), m_description(desc) {}

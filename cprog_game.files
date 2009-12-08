@@ -43,3 +43,4 @@ obj/idea.h
 obj/Makefile
 obj/object.cpp
 obj/object.h
+engine/init.cpp

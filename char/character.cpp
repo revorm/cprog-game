@@ -11,9 +11,11 @@ Environment* Character::environment() const {
 }
 
 void Character::go(Environment::Direction d) {
-  if(m_current_environment->neighbor(d)) {
+  Environment* neighbor = m_current_environment->neighbor(d);
+  if(neighbor) {
     m_current_environment->leave(this);
-    m_current_environment->neighbor(d)->enter(this);
+    m_current_environment = neighbor;
+    m_current_environment->enter(this);
   }
 }
 

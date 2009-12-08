@@ -6,7 +6,7 @@
 class Oracle : public Character
 {
 public:
-  Oracle(const std::string& name) : Character(name) {}
+  Oracle(const std::string& name, Environment* start_env) : Character(name,start_env) {}
 
   void action();
 

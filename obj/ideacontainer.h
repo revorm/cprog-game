@@ -8,7 +8,7 @@ class IdeaContainer : public Container
 public:
   const static std::string ITEM_NAME;
 
-  IdeaContainer(const std::string& name) : Container(name,0,0,std::string("A bag that you can put your ideas in"),6) {}
+  IdeaContainer() : Container(ITEM_NAME,0,0,std::string("A bag that you can put your ideas in"),6) {}
 
   int value() const;
 

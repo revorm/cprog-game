@@ -1,6 +1,8 @@
 #ifndef GAMEELEMENT_H
 #define GAMEELEMENT_H
 
+#include "engine/gameengine.h"
+
 #include <string>
 
 class Character;
@@ -23,6 +25,7 @@ protected:
   GameElement(const std::string& name) : m_name(name) {}
 
 private:
+  GameElement(const GameElement&);
   const std::string m_name;
 };
 

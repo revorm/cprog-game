@@ -13,8 +13,6 @@ class Character;
 class GameEngine
 {
 public:
-  const static std::string IDEA_CONTAINER_NAME;
-  const static int NUM_IDEAS_NEEDED;
 
   typedef std::multimap<std::string,Object*> ObjectContainer;
   typedef std::multimap<std::string,Character*> CharacterContainer;

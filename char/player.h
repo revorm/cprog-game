@@ -7,7 +7,9 @@
 class Player : public Character
 {
 public:
-  Player(const std::string& name) : Character(name), m_controller(new PlayerController(this)) {}
+  Player(const std::string& name, Environment* start_env) : Character(name,start_env), m_controller(new PlayerController(this)) {}
+
+  ~Player() { delete m_controller; }
 
   void inform(const std::string &s);
 

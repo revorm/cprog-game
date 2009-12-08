@@ -4,7 +4,7 @@
 
 #include <sstream>
 
-const std::string GameSourceTarball::GAME_NAME("game");
+const std::string GameSourceTarball::ITEM_NAME("game");
 
 void GameSourceTarball::interact(Character* c) {
   std::ostringstream ss;

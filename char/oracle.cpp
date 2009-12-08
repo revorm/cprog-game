@@ -26,7 +26,7 @@ static const char *const messages[] = {
 
 void Oracle::interact(Character *c) {
   unsigned int r = rand() % sizeof(messages);
-  c->inform(std::string(messages[r]));
+  say_to(c,messages[r]);
 }
 
 void Oracle::action() {

@@ -46,3 +46,7 @@ void Character::add_energy(int add) {
     m_energy = START_ENERGY;
   }
 }
+
+void Character::say_to(Character *c, const std::string &message) const {
+  c->inform(name() + std::string(": ") + message);
+}

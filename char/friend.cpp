@@ -22,10 +22,10 @@ void Friend::interact(Character *c) {
   if(p) {
     Outdoor* e = dynamic_cast<Outdoor*>(environment());
     if(e) {
-      p->inform(std::string("Here's an idea for your game!"));
+      say_to(p,"Here's an idea for your game!");
       e->put_item(m_idea);
     } else {
-      p->inform(std::string("It's too windy here, you'll not understand it."));
+      say_to(p,"It's too windy here, you'll not understand it.");
     }
   }
 }

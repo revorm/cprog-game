@@ -28,6 +28,8 @@ public:
   int energy() const;
   void add_energy(int add);
 
+  void say_to(Character* c, const std::string& message) const;
+
 protected:
   Character(const std::string& name) : GameElement(name), m_energy(START_ENERGY) {}
   Environment* m_current_environment;

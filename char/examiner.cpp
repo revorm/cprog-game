@@ -10,12 +10,19 @@ void Examiner::action() {
 }
 
 void Examiner::interact(Character *c) {
+  say_to(c,"Are you done with your lab yet?");
   Object* o = environment()->get_item("game");
   GameSourceTarball* g = dynamic_cast<GameSourceTarball*>(o);
   if(g) {
+    say_to(c,"Let me look at it...");
     m_examining = true;
     g->interact(this);
     m_examining = false;
+
+    if(m_should_exit) {
+      say_to(c,"Well done! You get an E for effort...");
+      GameEngine::get()->game_finished();
+    }
   }
 }
 
@@ -26,7 +33,7 @@ void Examiner::inform(const std::string &s) {
     int value;
     if(iss >> value) {
       if(value >= EXAMINER_MOOD) {
-        GameEngine::get()->game_finished();
+        m_should_exit = true;
       }
     }
   }

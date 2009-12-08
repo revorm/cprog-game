@@ -1,5 +1,10 @@
-CXXFLAGS += -Wall -O0 -fPIC -g
-LDFLAGS += -Llibs/ -lenv -lobj -lchar -lgameengine -Wl,-rpath,libs/
+CXXFLAGS = -Wall -O0 -fPIC -g
+
+ifneq ($(shell uname -s),Darwin)
+RPATH_FLAGS = -Wl,-R,libs
+endif
+
+LDFLAGS = -Llibs/ -lenv -lobj -lchar -lgameengine $(RPATH_FLAGS)
 SUBDIRS = engine char env obj
 
 all: engine $(SUBDIRS) game

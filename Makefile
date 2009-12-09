@@ -9,7 +9,7 @@ SUBDIRS = engine char env obj
 
 all: engine $(SUBDIRS) game
 
-game: game.o playercontroller.o
+game: game.o playercontroller.o playercommands.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $^ -o $@ 
 
 $(SUBDIRS):

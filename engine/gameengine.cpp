@@ -1,4 +1,5 @@
 #include "gameengine.h"
+#include <iostream>
 
 #include "../char/character.h"
 #include "../env/environment.h"
@@ -61,8 +62,9 @@ Object* GameEngine::resolve_obj(const std::string &name) const {
 
 void GameEngine::main_loop() {
   init();
+  m_running = true;
   while(m_running) {
-    for(CharacterContainer::const_iterator it = m_characters.begin(); it != m_characters.end(); ++it) {
+    for(CharacterContainer::iterator it = m_characters.begin(); it != m_characters.end(); ++it) {
       it->second->action();
     }
   }

@@ -3,6 +3,9 @@
 #include <iostream>
 #include <sstream>
 
+PlayerController::PlayerController(Player* p) : m_player(p) {
+  m_translator["quit"] = &PlayerCommands::quit;
+}
 std::istream& PlayerController::in() {
   return std::cin;
 }
@@ -21,5 +24,7 @@ void PlayerController::get_command() {
     tokens.push_back(token);
   if(m_translator.find(first_token) != m_translator.end()) {
     (m_commands.*(m_translator[first_token]))(tokens);
+  } else {
+    out() << first_token << ": command not found" << std::endl;
   }
 }

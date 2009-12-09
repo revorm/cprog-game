@@ -17,9 +17,7 @@ public:
   
   PlayerCommands m_commands;
   
-  PlayerController(Player* p) : m_player(p) {
-    m_translator["quit"] = &PlayerCommands::quit;
-  }
+  PlayerController(Player*);
 
   std::istream& in();
   std::ostream& out();

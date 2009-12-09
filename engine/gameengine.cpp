@@ -4,8 +4,6 @@
 #include "../env/environment.h"
 #include "../obj/object.h"
 
-#include <cstdlib>
-
 GameEngine* GameEngine::s_instance = 0;
 
 GameEngine::~GameEngine() {

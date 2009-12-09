@@ -19,10 +19,11 @@
 #include "../obj/ideacontainer.h"
 
 #include <cassert>
+#include <cstdlib>
 
 void GameEngine::init() {
   srand(unsigned(time(NULL)));
-  Environment* e = new ComputerRoom(std::string("room"),std::string("Computer room"));
+  Environment* e = new ComputerRoom("room","Computer room");
   Environment* out = new Outdoor("osquars_backe","You feel a strong wind blowing from the south, if you drop something here "
                                  "it's likely to blow away and disappear forever.");
   Environment* esc = new TheEscape("the_escape","A room full of computer science students, you recognize most of them.");
@@ -32,13 +33,14 @@ void GameEngine::init() {
   out->add_neighbor(Environment::EAST,esc);
   out->add_neighbor(Environment::SOUTH,e);
   e->add_neighbor(Environment::NORTH,out);
-  Player* p = new Player(std::string("player"),out);
+  Player* p = new Player("player",out);
   add_to_game(e->name(),e);
   add_to_game(p->name(),p);
   add_to_game(out->name(),out);
   add_to_game(esc->name(),esc);
   add_to_game(o->name(),o);
 
+  m_running = true;
   assert(p->inventory().empty());
   assert(p->environment() == out);
   p->go(Environment::EAST);

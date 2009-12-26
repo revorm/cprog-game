@@ -1,4 +1,6 @@
-#include "playercommands.h"
-void PlayerCommands::quit(std::vector<std::string> v) {
+#include "playercontroller.h"
+#include "engine/gameengine.h"
+
+void PlayerController::PlayerCommands::quit(std::vector<std::string> v) {
   GameEngine::get()->game_finished();
 }

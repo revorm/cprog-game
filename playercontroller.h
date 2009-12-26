@@ -5,12 +5,15 @@
 #include <map>
 #include <vector>
 
-#include "playercommands.h"
 
 class Player;
 class PlayerController
 {
 public:
+  class PlayerCommands {
+  public:
+    void quit(std::vector<std::string>);
+  };
   typedef void (PlayerCommands::*method) (std::vector<std::string>);
   
   std::map<std::string, method> m_translator;

@@ -20,19 +20,22 @@ bool Character::go(Environment::Direction d) {
   return neighbor;
 }
 
-void Character::pick_up(const std::string& name) {
+bool Character::pick_up(const std::string& name) {
   Object* o = m_current_environment->get_item(name);
-  if(o != 0) {
+  if(o) {
     m_inventory.insert(std::make_pair(name,o));
   }
+  return o;
 }
 
-void Character::drop(const std::string& name) {
+bool Character::drop(const std::string& name) {
   Inventory_t::iterator it = m_inventory.find(name);
-  if(it != m_inventory.end()) {
+  bool b;
+  if((b = it != m_inventory.end())) {
     m_current_environment->put_item(it->second);
     m_inventory.erase(it);
   }
+  return b;
 }
 
 const Character::Inventory_t& Character::inventory() const {

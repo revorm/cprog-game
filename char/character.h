@@ -20,8 +20,14 @@ public:
    * @return true if character managed to walk in direction, false otherwise
    */
   virtual bool go(Environment::Direction d); // allow override
-  virtual void pick_up(const std::string& name); // allow override
-  virtual void drop(const std::string& name); // allow override
+  /**
+   * @return true if object got picked up, false otherwise
+   */
+  virtual bool pick_up(const std::string& name); // allow override
+  /**
+   * @return true if object was dropped, false otherwise
+   */
+  virtual bool drop(const std::string& name); // allow override
 
   virtual void action() = 0;
 

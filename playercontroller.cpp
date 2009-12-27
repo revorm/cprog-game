@@ -18,6 +18,10 @@ std::ostream& PlayerController::out() {
   return std::cout;
 }
 
+PlayerController::PlayerCommands* PlayerController::commands() {
+  return &m_commands;
+}
+
 void PlayerController::get_command() {
   std::string line, first_token, token;
   std::vector<std::string> tokens;

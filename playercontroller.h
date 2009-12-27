@@ -27,7 +27,8 @@ public:
   std::istream& in();
   std::ostream& out();
   
-
+  PlayerCommands* commands();
+  
   void get_command();
 
 private:

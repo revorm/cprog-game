@@ -11,3 +11,8 @@ void Player::inform(const std::string &s) {
 void Player::action() {
   m_controller->get_command();
 }
+
+
+PlayerController* Player::controller() {
+  return m_controller;
+}

@@ -39,17 +39,20 @@ void GameEngine::init() {
   add_to_game(out->name(),out);
   add_to_game(esc->name(),esc);
   add_to_game(o->name(),o);
-
-  m_running = true;
-  assert(p->inventory().empty());
-  assert(p->environment() == out);
-  p->go(Environment::EAST);
-  assert(p->environment() == esc);
-  p->pick_up(IdeaContainer::ITEM_NAME);
-  assert(p->inventory().size() == 1);
-  p->go(Environment::WEST);
-  p->go(Environment::SOUTH);
-  e->interact(p);
-  p->inform(esc->description());
-  game_finished();
+  
+  p->inform("Welcome to cprog-game!");
+  p->inform(" - A game written in c++ about writing a game in c++\n");
+  p->controller()->commands()->look(std::vector<std::string>());
+  // m_running = true;
+  // assert(p->inventory().empty());
+  // assert(p->environment() == out);
+  // p->go(Environment::EAST);
+  // assert(p->environment() == esc);
+  // p->pick_up(IdeaContainer::ITEM_NAME);
+  // assert(p->inventory().size() == 1);
+  // p->go(Environment::WEST);
+  // p->go(Environment::SOUTH);
+  // e->interact(p);
+  // p->inform(esc->description());
+  // game_finished();
 }

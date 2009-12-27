@@ -4,7 +4,7 @@
 
 #include "../obj/object.h"
 
-const std::map<Environment::Direction,Environment*> Environment::directions() const {
+const Environment::Direction_map Environment::directions() const {
   return m_neighbors;
 }
 
@@ -22,11 +22,16 @@ std::string Environment::description() const {
   std::ostringstream s;
   s << m_description << std::endl;
   s << "There are exits to the ";
-  for(std::map<Direction,Environment*>::const_iterator it = m_neighbors.begin()
+  for(Direction_map::const_iterator it = m_neighbors.begin()
     ; it != m_neighbors.end(); ++it) {
     s << exit_names[unsigned(it->first)] << " ";
   }
   s << std::endl;
+  s << "Items: ";
+  for(Inventory_t::const_iterator it = m_objects.begin()
+    ; it != m_objects.end(); ++it) {
+    s << it->first << " ";
+  }
   return s.str();
 }
 

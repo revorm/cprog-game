@@ -4,8 +4,9 @@
 #include <sstream>
 
 PlayerController::PlayerController(Player* p) : m_commands(p), m_player(p) {
-  m_translator["quit"] = &PlayerController::PlayerCommands::quit;
   m_translator["exit"] = &PlayerController::PlayerCommands::quit;
+  m_translator["look"] = &PlayerController::PlayerCommands::look;
+  m_translator["quit"] = &PlayerController::PlayerCommands::quit;
 }
 std::istream& PlayerController::in() {
   return std::cin;

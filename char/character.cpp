@@ -10,13 +10,14 @@ Environment* Character::environment() const {
   return m_current_environment;
 }
 
-void Character::go(Environment::Direction d) {
+bool Character::go(Environment::Direction d) {
   Environment* neighbor = m_current_environment->neighbor(d);
   if(neighbor) {
     m_current_environment->leave(this);
     m_current_environment = neighbor;
     m_current_environment->enter(this);
   }
+  return neighbor;
 }
 
 void Character::pick_up(const std::string& name) {

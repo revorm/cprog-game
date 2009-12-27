@@ -5,7 +5,6 @@
 #include <sstream>
 
 void PlayerController::PlayerCommands::go(std::vector<std::string> v) {
-  Environment* env = m_player->environment();
   std::ostringstream s;
   if(!v.size()) {
     m_player->inform("No direction given. Where do you want to go?");

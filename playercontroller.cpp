@@ -18,6 +18,7 @@ std::ostream& PlayerController::out() {
 void PlayerController::get_command() {
   std::string line, first_token, token;
   std::vector<std::string> tokens;
+  out() << "€ ";
   std::getline(in(), line);
   std::istringstream stream(line);
   stream >> first_token;
@@ -25,7 +26,7 @@ void PlayerController::get_command() {
     tokens.push_back(token);
   if(m_translator.find(first_token) != m_translator.end()) {
     (m_commands.*(m_translator[first_token]))(tokens);
-  } else {
+  } else if(first_token.size()) {
     out() << first_token << ": command not found" << std::endl;
   }
 }

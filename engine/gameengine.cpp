@@ -52,10 +52,7 @@ void GameEngine::erase_and_free(const std::string &name, Object *o) {
 
 Object* GameEngine::resolve_obj(const std::string &name) const {
   ObjectContainer::const_iterator it = m_objects.find(name);
-  if(it != m_objects.end()) {
-    return it->second;
-  }
-  return 0;
+  return it != m_objects.end() ? it->second : NULL;
 }
 
 void GameEngine::main_loop() {

@@ -10,11 +10,7 @@ const Environment::Direction_map Environment::directions() const {
 
 Environment* Environment::neighbor(Direction d) const {
   std::map<Direction,Environment*>::const_iterator it = m_neighbors.find(d);
-  if(it != m_neighbors.end()) {
-    return it->second;
-  } else {
-    return 0;
-  }
+  return it != m_neighbors.end() ? it->second : NULL;
 }
 
 std::string Environment::description() const {
@@ -54,7 +50,7 @@ Object* Environment::get_item(const std::string& name) {
     m_objects.erase(it);
     return o;
   }
-  return 0;
+  return NULL;
 }
 
 void Environment::put_item(Object* o) {

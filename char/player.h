@@ -20,7 +20,6 @@ public:
   void interact(Character *) {}
 
 private:
-  friend class PlayerController;
   PlayerController* m_controller;
 };
 

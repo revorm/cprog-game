@@ -42,7 +42,7 @@ public:
 protected:
   Character(const std::string& name, Environment* start_env) : GameElement(name), m_current_environment(start_env), m_energy(START_ENERGY) {}
   Environment* m_current_environment;
-  std::map<std::string,Object*> m_inventory;
+  Inventory_t m_inventory;
   int m_energy;
 };
 

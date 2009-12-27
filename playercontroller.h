@@ -17,10 +17,8 @@ public:
     PlayerCommands(Player*);
   private:
     Player* m_player;
-  } m_commands;
+  };
   typedef void (PlayerCommands::*method) (std::vector<std::string>);
-
-  std::map<std::string, method> m_translator;
 
   PlayerController(Player*);
 
@@ -31,7 +29,9 @@ public:
   void get_command();
 
 private:
+  PlayerCommands m_commands;
   Player* m_player;
+  std::map<std::string, method> m_translator;
 };
 
 #endif // PLAYERCONTROLLER_H

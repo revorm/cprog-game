@@ -13,13 +13,14 @@ public:
   class PlayerCommands {
   public:
     void quit(std::vector<std::string>);
-  };
+    PlayerCommands(Player*);
+  private:
+    Player* m_player;
+  } m_commands;
   typedef void (PlayerCommands::*method) (std::vector<std::string>);
-  
+
   std::map<std::string, method> m_translator;
-  
-  PlayerCommands m_commands;
-  
+
   PlayerController(Player*);
 
   std::istream& in();

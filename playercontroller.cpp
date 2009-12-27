@@ -3,7 +3,7 @@
 #include <iostream>
 #include <sstream>
 
-PlayerController::PlayerController(Player* p) : m_player(p) {
+PlayerController::PlayerController(Player* p) : m_commands(p), m_player(p) {
   m_translator["quit"] = &PlayerController::PlayerCommands::quit;
   m_translator["exit"] = &PlayerController::PlayerCommands::quit;
 }

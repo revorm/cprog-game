@@ -12,18 +12,18 @@ class PlayerController
 public:
   class PlayerCommands {
   public:
-    void drop(std::vector<std::string>);
-    void go(std::vector<std::string>);
-    void help(std::vector<std::string>);
-    void look(std::vector<std::string>);
-    void pocket(std::vector<std::string>);
-    void quit(std::vector<std::string>);
-    void take(std::vector<std::string>);
+    void drop(const std::vector<std::string>&);
+    void go(const std::vector<std::string>&);
+    void help(const std::vector<std::string>&);
+    void look(const std::vector<std::string>&);
+    void pocket(const std::vector<std::string>&);
+    void quit(const std::vector<std::string>&);
+    void take(const std::vector<std::string>&);
     PlayerCommands(Player*);
   private:
     Player* m_player;
   };
-  typedef void (PlayerCommands::*method) (std::vector<std::string>);
+  typedef void (PlayerCommands::*method) (const std::vector<std::string>&);
 
   PlayerController(Player*);
 

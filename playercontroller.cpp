@@ -6,6 +6,7 @@
 PlayerController::PlayerController(Player* p) : m_commands(p), m_player(p) {
   m_translator["go"]   = &PlayerController::PlayerCommands::go;
   m_translator["exit"] = &PlayerController::PlayerCommands::quit;
+  m_translator["help"] = &PlayerController::PlayerCommands::help;
   m_translator["look"] = &PlayerController::PlayerCommands::look;
   m_translator["quit"] = &PlayerController::PlayerCommands::quit;
 }

@@ -32,6 +32,13 @@ void PlayerController::PlayerCommands::go(std::vector<std::string> v) {
   }
 }
 
+void PlayerController::PlayerCommands::help(std::vector<std::string> v) {
+  m_player->inform(" go - Makes the player go in a direction, if an exit in that direction exists.");
+  m_player->inform("Valid directions are: west, east, north and south.");
+  m_player->inform(" help - This text.");
+  m_player->inform(" look - don't remember what room you are in? Then this is for you.");
+}
+
 void PlayerController::PlayerCommands::look(std::vector<std::string> v) {
   std::ostringstream s;
   Environment* env = m_player->environment();

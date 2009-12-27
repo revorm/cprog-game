@@ -13,6 +13,7 @@ public:
   class PlayerCommands {
   public:
     void go(std::vector<std::string>);
+    void help(std::vector<std::string>);
     void look(std::vector<std::string>);
     void quit(std::vector<std::string>);
     PlayerCommands(Player*);

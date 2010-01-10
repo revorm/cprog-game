@@ -84,7 +84,7 @@ void cprog_game::GameEngine::init() {
   add_to_game(erik);
   Friend* svamp = new Friend("Johan Björk", sleven, bad_idea_1, 4);
   add_to_game(svamp);
-  Friend* ture = new Friend("Ture Tekonolog", e_house, bad_idea_2, 5);
+  Friend* ture = new Friend("Ture Teknolog", e_house, bad_idea_2, 5);
   add_to_game(ture);
 
   Examiner* alex = new Examiner("Alexander Baltazis", office);

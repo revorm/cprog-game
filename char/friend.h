@@ -10,7 +10,7 @@ namespace cprog_game
   class Friend : public Character
   {
   public:
-    Friend(const std::string& name, Environment* start_env, Idea* i) : Character(name,start_env), m_idea(i) {}
+    Friend(const std::string& name, Environment* start_env, Idea* i, const int stress) : Character(name,start_env), m_idea(i), m_stress_level(stress), m_count(0) {}
   
     void interact(Character *);
   
@@ -18,6 +18,8 @@ namespace cprog_game
   
   private:
     Idea* m_idea;
+    int   m_stress_level;
+    int   m_count;
   };
 }
 

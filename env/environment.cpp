@@ -70,3 +70,7 @@ const cprog_game::Environment::Inventory_t cprog_game::Environment::objects() co
 void cprog_game::Environment::add_neighbor(Direction d, cprog_game::Environment* e) {
   m_neighbors[d] = e;
 }
+
+bool cprog_game::Environment::can_enter(Character * c) {
+  return true;
+}

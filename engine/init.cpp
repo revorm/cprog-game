@@ -51,7 +51,7 @@ void cprog_game::GameEngine::init() {
   e_house->add_neighbor(Environment::EAST, office);
   esc->add_neighbor(Environment::SOUTH, out);
   fika_room->add_neighbor(Environment::SOUTH, office);
-  office->add_neighbor(Environment::WEST, out);
+  office->add_neighbor(Environment::WEST, e_house);
   office->add_neighbor(Environment::NORTH, fika_room);
   out->add_neighbor(Environment::NORTH, esc);
   out->add_neighbor(Environment::EAST, e_house);

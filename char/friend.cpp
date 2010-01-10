@@ -28,7 +28,7 @@ void cprog_game::Friend::interact(Character *c) {
   Player* p = dynamic_cast<Player*>(c);
   Outdoor* o = dynamic_cast<Outdoor*>(environment());
   
-  if(m_idea)
+  if(m_idea) {
     if(!o) {
       if(p) {
         say_to(p,"Here's an idea for your game!");
@@ -44,4 +44,5 @@ void cprog_game::Friend::interact(Character *c) {
         say_to(p,"It's too windy here, you'll not understand it.");
       }
     }
+  }
 }

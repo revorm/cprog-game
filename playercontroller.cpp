@@ -3,16 +3,29 @@
 #include <iostream>
 #include <sstream>
 
-cprog_game::PlayerController::PlayerController(Player* p) : m_commands(p), m_player(p) {
-  m_translator["drop"]    = &cprog_game::PlayerController::PlayerCommands::drop;
-  m_translator["go"]      = &cprog_game::PlayerController::PlayerCommands::go;
-  m_translator["exit"]    = &cprog_game::PlayerController::PlayerCommands::quit;
-  m_translator["help"]    = &cprog_game::PlayerController::PlayerCommands::help;
-  m_translator["look"]    = &cprog_game::PlayerController::PlayerCommands::look;
-  m_translator["pocket"]  = &cprog_game::PlayerController::PlayerCommands::pocket;
-  m_translator["quit"]    = &cprog_game::PlayerController::PlayerCommands::quit;
-  m_translator["take"]    = &cprog_game::PlayerController::PlayerCommands::take;
-  m_translator["wait"]    = &cprog_game::PlayerController::PlayerCommands::wait;
+cprog_game::PlayerController::PlayerController(Player* p) : m_commands(p,m_translator), m_player(p) {
+  m_translator["drop"]    = std::make_pair(&cprog_game::PlayerController::PlayerCommands::drop,
+                                           "drop [item]: Drop an item you have in your pocket");
+  m_translator["go"]      = std::make_pair(&cprog_game::PlayerController::PlayerCommands::go,
+                                           "go [direction]: Go to an adjacent room");
+  m_translator["exit"]    = std::make_pair(&cprog_game::PlayerController::PlayerCommands::quit,
+                                           "exit: Quit the game");
+  m_translator["help"]    = std::make_pair(&cprog_game::PlayerController::PlayerCommands::help,
+                                           "help: Print a help text");
+  m_translator["look"]    = std::make_pair(&cprog_game::PlayerController::PlayerCommands::look,
+                                           "look: Look around the room");
+  m_translator["pocket"]  = std::make_pair(&cprog_game::PlayerController::PlayerCommands::pocket,
+                                           "pocket: Look in your pocket");
+  m_translator["quit"]    = std::make_pair(&cprog_game::PlayerController::PlayerCommands::quit,
+                                           "quit: Quit the game");
+  m_translator["take"]    = std::make_pair(&cprog_game::PlayerController::PlayerCommands::take,
+                                           "take [item]: Pick up an item from the ground");
+  m_translator["wait"]    = std::make_pair(&cprog_game::PlayerController::PlayerCommands::wait,
+                                           "wait: Wait for a while");
+  m_translator["talk"]    = std::make_pair(&cprog_game::PlayerController::PlayerCommands::talk,
+                                           "talk [character]: Talk to another character");
+  m_translator["use"]     = std::make_pair(&cprog_game::PlayerController::PlayerCommands::use,
+                                           "use [item]: Use an item in your pocket");
 }
 
 std::istream& cprog_game::PlayerController::in() {
@@ -37,7 +50,8 @@ void cprog_game::PlayerController::get_command() {
   while(stream >> token)
     tokens.push_back(token);
   if(m_translator.find(first_token) != m_translator.end()) {
-    (m_commands.*(m_translator[first_token]))(tokens);
+    // call the function matching first_token on the object m_commands
+    (m_commands.*(m_translator[first_token].first))(tokens);
   } else if(first_token.size()) {
     out() << first_token << ": command not found" << std::endl;
   }

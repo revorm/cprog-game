@@ -34,6 +34,8 @@ namespace cprog_game{
     void interact(Character *) {}
 
     virtual bool can_enter(Character *);
+
+    const std::vector<Character*> characters() const;
   
     friend class GameEngine;
   

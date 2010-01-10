@@ -11,6 +11,11 @@ namespace cprog_game
   class PlayerController
   {
   public:
+    class PlayerCommands;
+
+    typedef void (PlayerCommands::*method) (const std::vector<std::string>&);
+    typedef std::map<std::string, std::pair<method,std::string> > translator_t;
+
     class PlayerCommands {
     public:
       void drop(const std::vector<std::string>&);
@@ -21,12 +26,15 @@ namespace cprog_game
       void quit(const std::vector<std::string>&);
       void take(const std::vector<std::string>&);
       void wait(const std::vector<std::string>&);
-      PlayerCommands(Player*);
+      void talk(const std::vector<std::string>&);
+      void use(const std::vector<std::string>&);
+      PlayerCommands(Player*, const translator_t&);
     private:
       Player* m_player;
       int m_wait_counter;
+      const translator_t& m_translator;
     };
-    typedef void (PlayerCommands::*method) (const std::vector<std::string>&);
+
   
     PlayerController(Player*);
   
@@ -38,9 +46,9 @@ namespace cprog_game
     void get_command();
   
   private:
+    translator_t m_translator;
     PlayerCommands m_commands;
     Player* m_player;
-    std::map<std::string, method> m_translator;
   };
 }
 

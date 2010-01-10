@@ -74,3 +74,7 @@ void cprog_game::Environment::add_neighbor(Direction d, cprog_game::Environment*
 bool cprog_game::Environment::can_enter(Character * c) {
   return true;
 }
+
+const std::vector<cprog_game::Character*> cprog_game::Environment::characters() const {
+  return m_characters;
+}

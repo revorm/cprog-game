@@ -3,6 +3,7 @@
 
 #include "../gameelement.h"
 #include "../env/environment.h"
+#include "../obj/object.h"
 
 #include <string>
 #include <map>

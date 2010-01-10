@@ -44,10 +44,12 @@ void cprog_game::PlayerController::PlayerCommands::go(const std::vector<std::str
 }
 
 void cprog_game::PlayerController::PlayerCommands::help(const std::vector<std::string>& v) {
-  m_player->inform(" go - Makes the player go in a direction, if an exit in that direction exists.");
-  m_player->inform("Valid directions are: west, east, north and south.");
-  m_player->inform(" help - This text.");
-  m_player->inform(" look - don't remember what room you are in? Then this is for you.");
+  m_player->inform("Help:");
+
+  translator_t::const_iterator it = m_translator.begin();
+  for(; it != m_translator.end(); ++it) {
+    m_player->inform(it->second.second);
+  }
   m_player->action(); // Help isn't itself an action
 }
 
@@ -119,4 +121,40 @@ void cprog_game::PlayerController::PlayerCommands::wait(const std::vector<std::s
   m_wait_counter++;
 }
 
-cprog_game::PlayerController::PlayerCommands::PlayerCommands(Player* p): m_player(p), m_wait_counter(0){}
+void cprog_game::PlayerController::PlayerCommands::use(const std::vector<std::string> &v) {
+  if(v.size()) {
+    const Character::Inventory_t& inv(m_player->inventory());
+    Character::Inventory_t::const_iterator it = inv.find(v[0]);
+
+    if(it != inv.end()) {
+      it->second->interact(m_player);
+    } else {
+      m_player->inform("You don't have that in your pocket");
+    }
+
+  } else {
+    m_player->inform("Use what?");
+  }
+}
+
+void cprog_game::PlayerController::PlayerCommands::talk(const std::vector<std::string> &v) {
+  if(v.size()) {
+    Character* c = 0;
+    const std::vector<Character*>& chars(m_player->environment()->characters());
+
+    for(std::vector<Character*>::const_iterator it = chars.begin(); it != chars.end(); ++it) {
+      if((*it)->name() == v[0]) {
+        c = *it;
+      }
+    }
+
+    if(c) {
+      c->interact(m_player);
+    }
+
+  } else {
+    m_player->inform("Talk to whom?");
+  }
+}
+
+cprog_game::PlayerController::PlayerCommands::PlayerCommands(Player* p, const translator_t& trans): m_player(p), m_wait_counter(0), m_translator(trans) {}

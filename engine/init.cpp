@@ -59,8 +59,11 @@ void cprog_game::GameEngine::init(bool interactive) {
   sleven->add_neighbor(Environment::NORTH, out);
 
   // create objects and add to game
+  // container
   Object* o = new IdeaContainer();
   esc->put_item(o);
+  add_to_game(o);
+  // ideas
   Idea* good_idea_1 = new Idea("idea1", "KISS - keep it simple stupid", 10);
   add_to_game(good_idea_1);
   Idea* good_idea_2 = new Idea("idea2", "I can teach you everything about inheritance that you will ever need.", 40);

@@ -5,6 +5,7 @@
 #include <sstream>
 
 void cprog_game::PlayerController::PlayerCommands::drop(const std::vector<std::string>& v) {
+  m_wait_counter = 0; // no more waiting
   if(!v.size()) {
     m_player->inform("You dropped nothing. And nothing happend. Happy?");
     return;
@@ -17,6 +18,7 @@ void cprog_game::PlayerController::PlayerCommands::drop(const std::vector<std::s
 }
 
 void cprog_game::PlayerController::PlayerCommands::go(const std::vector<std::string>& v) {
+  m_wait_counter = 0; // no more waiting
   if(!v.size()) {
     m_player->inform("No direction given. Where do you want to go?");
     return;
@@ -46,12 +48,14 @@ void cprog_game::PlayerController::PlayerCommands::help(const std::vector<std::s
   m_player->inform("Valid directions are: west, east, north and south.");
   m_player->inform(" help - This text.");
   m_player->inform(" look - don't remember what room you are in? Then this is for you.");
+  m_player->action(); // Help isn't itself an action
 }
 
 void cprog_game::PlayerController::PlayerCommands::look(const std::vector<std::string>& v) {
   Environment* env = m_player->environment();
   m_player->inform("You are in " + env->name());
   m_player->inform(env->description());
+  m_player->action(); // Look isn't itself an action
 }
 
 void cprog_game::PlayerController::PlayerCommands::pocket(const std::vector<std::string>& v) {
@@ -67,6 +71,7 @@ void cprog_game::PlayerController::PlayerCommands::pocket(const std::vector<std:
   } else {
     m_player->inform("Your pocket is empty. Go find some stuff!");
   }
+  m_player->action(); // Pocket isn't itself an action
 }
 
 void cprog_game::PlayerController::PlayerCommands::quit(const std::vector<std::string>& v) {
@@ -74,6 +79,7 @@ void cprog_game::PlayerController::PlayerCommands::quit(const std::vector<std::s
 }
 
 void cprog_game::PlayerController::PlayerCommands::take(const std::vector<std::string>& v) {
+  m_wait_counter = 0; // no more waiting
   if(!v.size()) {
     m_player->inform("No objects given. Don't you want to take something?");
     return;
@@ -85,4 +91,34 @@ void cprog_game::PlayerController::PlayerCommands::take(const std::vector<std::s
   }
 }
 
-cprog_game::PlayerController::PlayerCommands::PlayerCommands(Player* p): m_player(p){}
+void cprog_game::PlayerController::PlayerCommands::wait(const std::vector<std::string>& v) {
+  switch(m_wait_counter)
+  {
+    case 0: m_player->inform("You take a well needed break");
+      break;
+    case 1: m_player->inform("You extend your well needed break");
+      break;
+    case 2: m_player->inform("You are a bit lazy");
+      break;
+    case 3: m_player->inform("You are really lazy");
+      break;
+    case 4: m_player->inform("You sing a song");
+      break;
+    case 5: m_player->inform("You are a bit sleepy");
+      break;
+      case 6: m_player->inform("Your sleepiness got so big that instead of doing something (anything at all actually) you instead fell asleep.");
+      m_player->inform("Sleeping at school? Not cool.");
+      m_player->inform("Neither thinks the guards walking around school at midnight, who walks you out.");
+      m_player->inform("While there you realize you have no card to get in at the now locked school so you go home and forget everything about finishing a game in c++.");
+      m_player->inform("And that's the end of your journey.\n");
+      m_player->inform("Don't stop believin'");
+      m_player->inform("Hold on to the feelin'");
+      m_player->inform("The end");
+      GameEngine::get()->game_finished();
+  }
+  m_wait_counter++;
+}
+
+cprog_game::PlayerController::PlayerCommands::PlayerCommands(Player* p): m_player(p){
+  m_wait_counter = 0;
+}

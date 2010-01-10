@@ -12,7 +12,9 @@ cprog_game::PlayerController::PlayerController(Player* p) : m_commands(p), m_pla
   m_translator["pocket"]  = &cprog_game::PlayerController::PlayerCommands::pocket;
   m_translator["quit"]    = &cprog_game::PlayerController::PlayerCommands::quit;
   m_translator["take"]    = &cprog_game::PlayerController::PlayerCommands::take;
+  m_translator["wait"]    = &cprog_game::PlayerController::PlayerCommands::wait;
 }
+
 std::istream& cprog_game::PlayerController::in() {
   return std::cin;
 }

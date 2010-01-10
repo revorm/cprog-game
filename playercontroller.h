@@ -20,9 +20,11 @@ namespace cprog_game
       void pocket(const std::vector<std::string>&);
       void quit(const std::vector<std::string>&);
       void take(const std::vector<std::string>&);
+      void wait(const std::vector<std::string>&);
       PlayerCommands(Player*);
     private:
       Player* m_player;
+      int m_wait_counter;
     };
     typedef void (PlayerCommands::*method) (const std::vector<std::string>&);
   

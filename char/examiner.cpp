@@ -1,7 +1,6 @@
 #include "examiner.h"
 #include "../engine/gameengine.h"
 #include "../obj/gamesourcetarball.h"
-#include "../env/examineroffice.h"
 #include "../env/fikaroom.h"
 
 #include <sstream>
@@ -14,15 +13,15 @@ cprog_game::Examiner::Examiner(
 }
 
 void cprog_game::Examiner::action() {
-  if(dynamic_cast<ExaminerOffice*>(m_current_environment)) {
-    if(rand() < (RAND_MAX/8) ) { // approx 12,5% probab.
-      m_move_timer = 0;
-      go(Environment::NORTH);
-    }
-  } else if(dynamic_cast<FikaRoom*>(m_current_environment)) {
+  if(dynamic_cast<FikaRoom*>(m_current_environment)) {
     ++m_move_timer;
     if(m_move_timer >= FIKA_TIMEOUT) {
       go(Environment::SOUTH);
+    }
+  } else {
+    if(rand() < (RAND_MAX/8) ) { // approx 12,5% probab.
+      m_move_timer = 0;
+      go(Environment::NORTH);
     }
   }
 }

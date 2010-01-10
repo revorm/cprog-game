@@ -7,9 +7,9 @@ namespace cprog_game {
   class Apple : public Object
   {
   public:
-    Apple(const std::string& name) : Object(name,0,0,"an apple suitable for a schoolteacher") {}
+    Apple(const std::string& name) : Object(name,0,0,"A suspicious apple found on the floor behind the freezer") {}
 
-    void interact(Character *) {}
+    void interact(Character *);
   };
 }
 

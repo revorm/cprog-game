@@ -12,7 +12,7 @@ namespace cprog_game
   
     void action();
     void interact(Character * c);
-  
+    void set_good_mood();
     void inform(const std::string &s);
   private:
     enum mood{

@@ -50,9 +50,13 @@ void cprog_game::Examiner::inform(const std::string &s) {
     std::istringstream iss(s.substr(pos));
     int value;
     if(iss >> value) {
-      if(value >= m_examiner_mood) {
+      if(value >= int(m_examiner_mood)) {
         m_should_exit = true;
       }
     }
   }
+}
+
+void cprog_game::Examiner::set_good_mood() {
+  m_examiner_mood = GOOD;
 }

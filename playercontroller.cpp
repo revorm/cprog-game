@@ -56,5 +56,7 @@ void cprog_game::PlayerController::get_command() {
     (m_commands.*(m_translator[first_token].first))(tokens);
   } else if(first_token.size()) {
     out() << first_token << ": command not found" << std::endl;
+  } else {
+    get_command();
   }
 }

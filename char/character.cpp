@@ -8,7 +8,7 @@ const int cprog_game::Character::START_ENERGY = 100;
 
 void cprog_game::Character::inform(const std::string &s) {
   if(!GameEngine::get()->interactive()) {
-    std::cout << name() << " " << s << std::endl;
+    std::cout << "[" << name() <<" in " << environment()->name() << "]" << " " << s << std::endl;
   }
 }
 
@@ -63,5 +63,5 @@ void cprog_game::Character::add_energy(int add) {
 }
 
 void cprog_game::Character::say_to(Character *c, const std::string &message) const {
-  c->inform(name() + std::string(": ") + message);
+  c->inform(name() + ": " + message);
 }

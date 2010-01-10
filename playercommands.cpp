@@ -157,4 +157,8 @@ void cprog_game::PlayerController::PlayerCommands::talk(const std::vector<std::s
   }
 }
 
+void cprog_game::PlayerController::PlayerCommands::search(const std::vector<std::string> &v) {
+  m_player->environment()->interact(m_player);
+}
+
 cprog_game::PlayerController::PlayerCommands::PlayerCommands(Player* p, const translator_t& trans): m_player(p), m_wait_counter(0), m_translator(trans) {}

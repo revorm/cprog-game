@@ -28,6 +28,7 @@ namespace cprog_game
       void wait(const std::vector<std::string>&);
       void talk(const std::vector<std::string>&);
       void use(const std::vector<std::string>&);
+      void search(const std::vector<std::string>&);
       PlayerCommands(Player*, const translator_t&);
     private:
       Player* m_player;

@@ -26,6 +26,8 @@ cprog_game::PlayerController::PlayerController(Player* p) : m_commands(p,m_trans
                                            "talk [character]: Talk to another character");
   m_translator["use"]     = std::make_pair(&cprog_game::PlayerController::PlayerCommands::use,
                                            "use [item]: Use an item in your pocket");
+  m_translator["search"]  = std::make_pair(&cprog_game::PlayerController::PlayerCommands::search,
+                                           "search: Inspect the current room more closely");
 }
 
 std::istream& cprog_game::PlayerController::in() {

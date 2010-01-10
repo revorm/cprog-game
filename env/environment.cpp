@@ -78,6 +78,6 @@ bool cprog_game::Environment::can_enter(Character * c) {
   return true;
 }
 
-const std::vector<cprog_game::Character*> cprog_game::Environment::characters() const {
+const std::vector<cprog_game::Character*>& cprog_game::Environment::characters() const {
   return m_characters;
 }

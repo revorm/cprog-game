@@ -119,6 +119,4 @@ void cprog_game::PlayerController::PlayerCommands::wait(const std::vector<std::s
   m_wait_counter++;
 }
 
-cprog_game::PlayerController::PlayerCommands::PlayerCommands(Player* p): m_player(p){
-  m_wait_counter = 0;
-}
+cprog_game::PlayerController::PlayerCommands::PlayerCommands(Player* p): m_player(p), m_wait_counter(0){}

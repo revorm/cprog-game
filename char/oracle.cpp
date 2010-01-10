@@ -1,6 +1,7 @@
 #include "oracle.h"
 
 #include <string>
+#include <cstdlib>
 
 static const std::string messages[] = {
 "As I see it, yes",

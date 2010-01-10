@@ -66,7 +66,7 @@ void cprog_game::PlayerController::PlayerCommands::pocket(const std::vector<std:
     s << "You have ";
     for(Character::Inventory_t::const_iterator it = m_player->inventory().begin();
     it != m_player->inventory().end(); ++it) {
-      s << it->first << " ";
+      s << it->first << " (value " << it->second->value() << ") ";
     }
     s << "in your pocket";
     m_player->inform(s.str());

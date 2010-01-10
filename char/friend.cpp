@@ -15,7 +15,10 @@ void cprog_game::Friend::action() {
     while(r--) { ++it; }
     go(it->first);
     if(environment()->characters().size() > 1){
-      interact(environment()->characters()[0]);
+      // Never talk to the player, the player talk to you.
+      if(!dynamic_cast<Player*>(environment()->characters()[0])){
+        interact(environment()->characters()[0]);
+      }
     }
   }
 }
@@ -25,18 +28,20 @@ void cprog_game::Friend::interact(Character *c) {
   Player* p = dynamic_cast<Player*>(c);
   Outdoor* o = dynamic_cast<Outdoor*>(environment());
   
-  if(!o) {
-    if(p) {
-      say_to(p,"Here's an idea for your game!");
-      environment()->put_item(m_idea);
-    } else if(f) {
-      say_to(f, "Let's switch ideas. I don't want mine any more.");
-      std::swap(m_idea, f->m_idea);
+  if(m_idea)
+    if(!o) {
+      if(p) {
+        say_to(p,"Here's an idea for your game!");
+        environment()->put_item(m_idea);
+        m_idea = NULL;
+      } else if(f) {
+        say_to(f, "Let's switch ideas. I don't want mine any more.");
+        std::swap(m_idea, f->m_idea);
+      }
+    } else {
+      if(p)
+      {
+        say_to(p,"It's too windy here, you'll not understand it.");
+      }
     }
-  } else {
-    if(p)
-    {
-      say_to(p,"It's too windy here, you'll not understand it.");
-    }
-  }
 }

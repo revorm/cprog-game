@@ -2,6 +2,8 @@
 
 #include "../env/environment.h"
 #include "../env/computerroom.h"
+#include "../env/examineroffice.h"
+#include "../env/fikaroom.h"
 #include "../env/outdoor.h"
 #include "../env/sleven.h"
 #include "../env/theescape.h"
@@ -25,21 +27,42 @@
 
 void cprog_game::GameEngine::init(bool interactive) {
   srand(unsigned(time(NULL)));
-  Environment* e = new ComputerRoom("room","Computer room");
-  Environment* out = new Outdoor("osquars_backe","You feel a strong wind blowing from the south, if you drop something here "
+  // Create environments and add to the game
+  Environment* computer_room = new ComputerRoom("room", "Computer room");
+  add_to_game(computer_room->name(), computer_room);
+  Environment* e_house = new Environment("e_house", "A house at kth.");
+  add_to_game(e_house->name(), e_house);
+  Environment* esc = new TheEscape("the_escape", "A room full of computer science students, you recognize most of them.");
+  add_to_game(esc->name(), esc);
+  Environment* fika_room = new FikaRoom("fika_room", "A room where the examinator gets his coffe.");
+  add_to_game(fika_room->name(), fika_room);
+  Environment* office = new ExaminerOffice("office", "The examinators office.");
+  add_to_game(office->name(), office);
+  Environment* out = new Outdoor("osquars_backe", "You feel a strong wind blowing from the south, if you drop something here "
                                  "it's likely to blow away and disappear forever.");
-  Environment* esc = new TheEscape("the_escape","A room full of computer science students, you recognize most of them.");
+  add_to_game(out->name(), out);
+  Environment* sleven = new Sleven("7-11", "Your favourite place to buy a coffee.");
+  add_to_game(sleven->name(), sleven);
+
+  // create neighborhood
+  computer_room->add_neighbor(Environment::SOUTH, e_house);
+  e_house->add_neighbor(Environment::WEST, out);
+  e_house->add_neighbor(Environment::NORTH, computer_room);
+  e_house->add_neighbor(Environment::EAST, office);
+  esc->add_neighbor(Environment::SOUTH, out);
+  fika_room->add_neighbor(Environment::SOUTH, office);
+  office->add_neighbor(Environment::WEST, out);
+  office->add_neighbor(Environment::NORTH, fika_room);
+  out->add_neighbor(Environment::NORTH, esc);
+  out->add_neighbor(Environment::EAST, e_house);
+  out->add_neighbor(Environment::SOUTH, sleven);
+  sleven->add_neighbor(Environment::NORTH, out);
+
+  // create objects and add to game
   Object* o = new IdeaContainer();
   esc->put_item(o);
-  esc->add_neighbor(Environment::WEST,out);
-  out->add_neighbor(Environment::EAST,esc);
-  out->add_neighbor(Environment::SOUTH,e);
-  e->add_neighbor(Environment::NORTH,out);
-  add_to_game(e->name(),e);
-  add_to_game(out->name(),out);
-  add_to_game(esc->name(),esc);
-  add_to_game(o->name(),o);
-
+  
+  // create characters and add to game
   if(interactive) {
     Player* p = new Player("player",out);
     add_to_game(p->name(),p);
@@ -50,20 +73,7 @@ void cprog_game::GameEngine::init(bool interactive) {
         p->inform(line);
       }
     }
-    p->inform("\n");
-
+    p->inform("");
     p->controller()->commands()->look(std::vector<std::string>());
   }
-  // m_running = true;
-  // assert(p->inventory().empty());
-  // assert(p->environment() == out);
-  // p->go(Environment::EAST);
-  // assert(p->environment() == esc);
-  // p->take(IdeaContainer::ITEM_NAME);
-  // assert(p->inventory().size() == 1);
-  // p->go(Environment::WEST);
-  // p->go(Environment::SOUTH);
-  // e->interact(p);
-  // p->inform(esc->description());
-  // game_finished();
 }

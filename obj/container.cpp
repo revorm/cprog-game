@@ -54,7 +54,8 @@ int cprog_game::Container::max_weight() const {
 }
 
 std::string cprog_game::Container::description() const {
-  std::stringstream ss(m_description,std::ios_base::in);
+  std::stringstream ss;
+  ss << m_description;
   ss << " ";
   for(size_t i = 0; i < m_contents.size(); ++i) {
     ss << m_contents[i]->name() << " : " << m_contents[i]->description();

@@ -13,7 +13,8 @@ int cprog_game::Sleven::coffee_count = 0;
 
 void cprog_game::Sleven::interact(Character *c) {
   const static std::string coffee("coffee");
-  std::stringstream s(coffee,std::ios_base::in);
+  std::stringstream s;
+  s << coffee;
   s << coffee_count++;
 
   Coffee* co = new Coffee(s.str());

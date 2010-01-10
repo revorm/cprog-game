@@ -8,7 +8,7 @@
 
 #include  <sstream>
 
-int cprog_game::ComputerRoom::s_tarball_count(0);
+int cprog_game::ComputerRoom::s_tarball_count(1);
 
 void cprog_game::ComputerRoom::interact(Character* c) {
   const static std::string name("game");
@@ -16,7 +16,8 @@ void cprog_game::ComputerRoom::interact(Character* c) {
     return;
   }
   if(c->energy() > 80) {
-    std::stringstream s(name,std::ios_base::in);
+    std::stringstream s;
+    s << name;
     s << s_tarball_count++;
 
     c->inform("You sit down an hack together a game in c++");

@@ -10,11 +10,11 @@
 const int cprog_game::Examiner::FIKA_TIMEOUT = 4; // examiner hides in fika-room for 4 turns
 
 cprog_game::Examiner::Examiner(
-    const std::string& name, Environment* start_env) : Character(name,start_env), m_examining(false), m_should_exit(false), m_examiner_mood(BAD) {
+    const std::string& name, Environment* start_env) : Character(name,start_env), m_examiner_mood(BAD) {
 }
 
 void cprog_game::Examiner::action() {
-  if(dynamic_cast<ExaminerOffice*>(m_current_environment)) {
+  /*if(dynamic_cast<ExaminerOffice*>(m_current_environment)) {
     if((m_current_environment->characters().size() < 2) && rand() < (RAND_MAX/8) ) { // approx 12,5% probab.
       m_move_timer = 0;
       go(Environment::NORTH);
@@ -24,14 +24,14 @@ void cprog_game::Examiner::action() {
     if(m_move_timer >= FIKA_TIMEOUT) {
       go(Environment::SOUTH);
     }
-  }
+  }*/
 }
 
 void cprog_game::Examiner::interact(Character *c) {
   say_to(c,"Are you done with your lab yet?");
   const Environment::Inventory_t& objs = environment()->objects();
   Environment::Inventory_t::const_iterator it = objs.lower_bound("game");
-  if(it->first.substr(0,4) != "game") {
+  if(it != objs.end() && it->first.substr(0,4) != "game") {
     it = objs.end();
   }
 
@@ -39,30 +39,13 @@ void cprog_game::Examiner::interact(Character *c) {
     GameSourceTarball* g = dynamic_cast<GameSourceTarball*>(it->second);
     if(g) {
       say_to(c,"Let me look at it...");
-      m_examining = true;
-      g->interact(this);
-      m_examining = false;
 
-      if(m_should_exit) {
+      if(g->value() >= int(m_examiner_mood)) {
         say_to(c,"Well done! You get an E for effort...");
         GameEngine::get()->game_finished();
       } else {
         say_to(c,"Well that wasn't very good now was it FFFFFFF!");
         take(it->first);
-      }
-    }
-  }
-}
-
-void cprog_game::Examiner::inform(const std::string &s) {
-  Character::inform(s);
-  if(m_examining && s.find("You play the game")) {
-    size_t pos = s.find_first_of("0123456789");
-    std::istringstream iss(s.substr(pos));
-    int value;
-    if(iss >> value) {
-      if(value >= int(m_examiner_mood)) {
-        m_should_exit = true;
       }
     }
   }

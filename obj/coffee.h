@@ -3,18 +3,21 @@
 
 #include "object.h"
 
-class Coffee : public Object
+namespace cprog_game
 {
-public:
-  const static int WEIGHT;
-  const static int VALUE;
-
-  const static std::string DESCRIPTION;
-
-  Coffee(const std::string& name) :
-      Object(name,WEIGHT,VALUE,DESCRIPTION) {}
-
-  void interact(Character* c);
-};
+  class Coffee : public Object
+  {
+  public:
+    const static int WEIGHT;
+    const static int VALUE;
+  
+    const static std::string DESCRIPTION;
+  
+    Coffee(const std::string& name) :
+        Object(name,WEIGHT,VALUE,DESCRIPTION) {}
+  
+    void interact(Character* c);
+  };
+}
 
 #endif // COFFEE_H

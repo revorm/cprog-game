@@ -5,39 +5,41 @@
 #include <map>
 #include <vector>
 
-
-class Player;
-class PlayerController
+namespace cprog_game
 {
-public:
-  class PlayerCommands {
+  class Player;
+  class PlayerController
+  {
   public:
-    void drop(const std::vector<std::string>&);
-    void go(const std::vector<std::string>&);
-    void help(const std::vector<std::string>&);
-    void look(const std::vector<std::string>&);
-    void pocket(const std::vector<std::string>&);
-    void quit(const std::vector<std::string>&);
-    void take(const std::vector<std::string>&);
-    PlayerCommands(Player*);
+    class PlayerCommands {
+    public:
+      void drop(const std::vector<std::string>&);
+      void go(const std::vector<std::string>&);
+      void help(const std::vector<std::string>&);
+      void look(const std::vector<std::string>&);
+      void pocket(const std::vector<std::string>&);
+      void quit(const std::vector<std::string>&);
+      void take(const std::vector<std::string>&);
+      PlayerCommands(Player*);
+    private:
+      Player* m_player;
+    };
+    typedef void (PlayerCommands::*method) (const std::vector<std::string>&);
+  
+    PlayerController(Player*);
+  
+    std::istream& in();
+    std::ostream& out();
+    
+    PlayerCommands* commands();
+    
+    void get_command();
+  
   private:
+    PlayerCommands m_commands;
     Player* m_player;
+    std::map<std::string, method> m_translator;
   };
-  typedef void (PlayerCommands::*method) (const std::vector<std::string>&);
-
-  PlayerController(Player*);
-
-  std::istream& in();
-  std::ostream& out();
-  
-  PlayerCommands* commands();
-  
-  void get_command();
-
-private:
-  PlayerCommands m_commands;
-  Player* m_player;
-  std::map<std::string, method> m_translator;
-};
+}
 
 #endif // PLAYERCONTROLLER_H

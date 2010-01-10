@@ -4,23 +4,26 @@
 #include "character.h"
 #include "../playercontroller.h"
 
-class Player : public Character
+namespace cprog_game
 {
-public:
-  Player(const std::string& name, Environment* start_env) : Character(name,start_env), m_controller(new PlayerController(this)) {}
-
-  ~Player() { delete m_controller; }
+  class Player : public Character
+  {
+  public:
+    Player(const std::string& name, Environment* start_env) : Character(name,start_env), m_controller(new PlayerController(this)) {}
   
-  PlayerController* controller();
-
-  void inform(const std::string &s);
-
-  void action();
-
-  void interact(Character *) {}
-
-private:
-  PlayerController* m_controller;
-};
+    ~Player() { delete m_controller; }
+    
+    PlayerController* controller();
+  
+    void inform(const std::string &s);
+  
+    void action();
+  
+    void interact(Character *) {}
+  
+  private:
+    PlayerController* m_controller;
+  };
+}
 
 #endif // PLAYER_H

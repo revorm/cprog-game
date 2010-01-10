@@ -3,13 +3,16 @@
 
 #include "environment.h"
 
-class Outdoor : public Environment
+namespace cprog_game
 {
-public:
-  Outdoor(const std::string& name, const std::string& desc) :
-      Environment(name,desc) {}
-
-  void put_item(Object *o);
-};
+  class Outdoor : public Environment
+  {
+  public:
+    Outdoor(const std::string& name, const std::string& desc) :
+        Environment(name,desc) {}
+  
+    void put_item(Object *o);
+  };
+}
 
 #endif // OUTDOOR_H

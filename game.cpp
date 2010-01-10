@@ -7,13 +7,16 @@
 
 #include "obj/ideacontainer.h"
 
-void run_game() {
-  GameEngine g;
-  g.main_loop();
+namespace cprog_game
+{
+  void run_game() {
+    cprog_game::GameEngine g;
+    g.main_loop();
+  }
 }
 
 int main(int argc, char **argv) {
   std::ios_base::sync_with_stdio(false);
-  run_game();
+  cprog_game::run_game();
   return 0;
 }

@@ -3,19 +3,22 @@
 
 #include "character.h"
 
-class Idea;
-
-class Friend : public Character
+namespace cprog_game
 {
-public:
-  Friend(const std::string& name, Environment* start_env, Idea* i) : Character(name,start_env), m_idea(i) {}
-
-  void interact(Character *);
-
-  void action();
-
-private:
-  Idea* m_idea;
-};
+  class Idea;
+  
+  class Friend : public Character
+  {
+  public:
+    Friend(const std::string& name, Environment* start_env, Idea* i) : Character(name,start_env), m_idea(i) {}
+  
+    void interact(Character *);
+  
+    void action();
+  
+  private:
+    Idea* m_idea;
+  };
+}
 
 #endif // FRIEND_H

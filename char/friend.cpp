@@ -6,7 +6,7 @@
 
 #include <cstdlib>
 
-void Friend::action() {
+void cprog_game::Friend::action() {
   static int count = 0;
   if((count++ % 10) == 0) {
     const Environment::Direction_map m = environment()->directions();
@@ -17,7 +17,7 @@ void Friend::action() {
   }
 }
 
-void Friend::interact(Character *c) {
+void cprog_game::Friend::interact(Character *c) {
   Player* p = dynamic_cast<Player*>(c);
   if(p) {
     Outdoor* e = dynamic_cast<Outdoor*>(environment());

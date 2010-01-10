@@ -4,15 +4,15 @@
 
 #include <iostream>
 
-void Player::inform(const std::string &s) {
+void cprog_game::Player::inform(const std::string &s) {
   m_controller->out() << s << std::endl;
 }
 
-void Player::action() {
+void cprog_game::Player::action() {
   m_controller->get_command();
 }
 
 
-PlayerController* Player::controller() {
+cprog_game::PlayerController* cprog_game::Player::controller() {
   return m_controller;
 }

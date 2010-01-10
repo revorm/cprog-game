@@ -5,12 +5,12 @@
 
 #include <sstream>
 
-const int Coffee::WEIGHT = 2;
-const int Coffee::VALUE = 4;
+const int cprog_game::Coffee::WEIGHT = 2;
+const int cprog_game::Coffee::VALUE = 4;
 
-const std::string Coffee::DESCRIPTION("A large cup of coffee, with a small amount of milk in it, it smells lovely.");
+const std::string cprog_game::Coffee::DESCRIPTION("A large cup of coffee, with a small amount of milk in it, it smells lovely.");
 
-void Coffee::interact(Character* c) {
+void cprog_game::Coffee::interact(Character* c) {
   std::ostringstream ss;
   if(value() > 0) {
     c->add_energy(50);

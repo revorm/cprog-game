@@ -1,13 +1,13 @@
 #include "object.h"
 
-int Object::value() const {
+int cprog_game::Object::value() const {
   return m_value;
 }
 
-int Object::weight() const {
+int cprog_game::Object::weight() const {
   return m_weight;
 }
 
-std::string Object::description() const {
+std::string cprog_game::Object::description() const {
   return m_description;
 }

@@ -6,7 +6,7 @@
 #include "../obj/ideacontainer.h"
 #include "../obj/gamesourcetarball.h"
 
-void ComputerRoom::interact(Character* c) {
+void cprog_game::ComputerRoom::interact(Character* c) {
   if(!dynamic_cast<Player*>(c)) {
     return;
   }

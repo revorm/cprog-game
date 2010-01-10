@@ -4,12 +4,12 @@
 
 #include <sstream>
 
-const int Examiner::EXAMINER_MOOD = 2;
+const int cprog_game::Examiner::EXAMINER_MOOD = 2;
 
-void Examiner::action() {
+void cprog_game::Examiner::action() {
 }
 
-void Examiner::interact(Character *c) {
+void cprog_game::Examiner::interact(Character *c) {
   say_to(c,"Are you done with your lab yet?");
   Object* o = environment()->get_item("game");
   GameSourceTarball* g = dynamic_cast<GameSourceTarball*>(o);
@@ -26,7 +26,7 @@ void Examiner::interact(Character *c) {
   }
 }
 
-void Examiner::inform(const std::string &s) {
+void cprog_game::Examiner::inform(const std::string &s) {
   if(m_examining && s.find("You play the game")) {
     size_t pos = s.find_first_of("0123456789");
     std::istringstream iss(s.substr(pos));

@@ -3,14 +3,17 @@
 
 #include "character.h"
 
-class Oracle : public Character
+namespace cprog_game
 {
-public:
-  Oracle(const std::string& name, Environment* start_env) : Character(name,start_env) {}
-
-  void action();
-
-  void interact(Character *);
-};
+  class Oracle : public Character
+  {
+  public:
+    Oracle(const std::string& name, Environment* start_env) : Character(name,start_env) {}
+  
+    void action();
+  
+    void interact(Character *);
+  };
+}
 
 #endif // ORACLE_H

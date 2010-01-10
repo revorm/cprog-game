@@ -3,10 +3,13 @@
 
 #include "environment.h"
 
-class TheEscape : public Environment
+namespace cprog_game
 {
-public:
-  TheEscape(const std::string& name, const std::string& desc) : Environment(name,desc) {}
-};
+  class TheEscape : public Environment
+  {
+  public:
+    TheEscape(const std::string& name, const std::string& desc) : Environment(name,desc) {}
+  };
+}
 
 #endif // THEESCAPE_H

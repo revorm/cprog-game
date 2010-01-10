@@ -3,17 +3,20 @@
 
 #include "container.h"
 
-class IdeaContainer : public Container
+namespace cprog_game
 {
-public:
-  const static std::string ITEM_NAME;
-
-  IdeaContainer() : Container(ITEM_NAME,0,0,std::string("A bag that you can put your ideas in"),6) {}
-
-  int value() const;
-
-  bool add(Object* o);
-
-};
+  class IdeaContainer : public Container
+  {
+  public:
+    const static std::string ITEM_NAME;
+  
+    IdeaContainer() : Container(ITEM_NAME,0,0,std::string("A bag that you can put your ideas in"),6) {}
+  
+    int value() const;
+  
+    bool add(Object* o);
+  
+  };
+}
 
 #endif // IDEACONTAINER_H

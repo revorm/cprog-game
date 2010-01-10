@@ -24,12 +24,12 @@ static const char *const messages[] = {
 "Outlook not so good",
 "Very doubtful" };
 
-void Oracle::interact(Character *c) {
+void cprog_game::Oracle::interact(Character *c) {
   unsigned int r = rand() % sizeof(messages);
   say_to(c,messages[r]);
 }
 
-void Oracle::action() {
+void cprog_game::Oracle::action() {
   static int counter = 0;
   if((counter++ % 10) == 0) {
     const Environment::Direction_map m = environment()->directions();

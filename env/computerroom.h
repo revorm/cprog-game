@@ -3,12 +3,15 @@
 
 #include "environment.h"
 
-class ComputerRoom : public Environment
+namespace cprog_game
 {
-public:
-  ComputerRoom(const std::string & name, const std::string & desc) : Environment(name,desc) {}
-
-  void interact(Character* c);
-};
+  class ComputerRoom : public Environment
+  {
+  public:
+    ComputerRoom(const std::string & name, const std::string & desc) : Environment(name,desc) {}
+  
+    void interact(Character* c);
+  };
+}
 
 #endif // COMPUTERROOM_H

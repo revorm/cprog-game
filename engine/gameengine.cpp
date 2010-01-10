@@ -5,9 +5,9 @@
 #include "../env/environment.h"
 #include "../obj/object.h"
 
-GameEngine* GameEngine::s_instance = 0;
+cprog_game::GameEngine* cprog_game::GameEngine::s_instance = 0;
 
-GameEngine::~GameEngine() {
+cprog_game::GameEngine::~GameEngine() {
   for(std::map<std::string,Object*>::const_iterator it =
       m_objects.begin(); it != m_objects.end(); ++it) {
     delete it->second;
@@ -22,24 +22,24 @@ GameEngine::~GameEngine() {
   }
 }
 
-GameEngine* GameEngine::get() {
+cprog_game::GameEngine* cprog_game::GameEngine::get() {
   return s_instance != 0 ? s_instance :
       throw std::logic_error("GameEngine not initialized");
 }
 
-void GameEngine::add_to_game(const std::string& name, Object* o) {
+void cprog_game::GameEngine::add_to_game(const std::string& name, Object* o) {
   m_objects.insert(std::make_pair(name,o));
 }
 
-void GameEngine::add_to_game(const std::string& name, Environment* e) {
+void cprog_game::GameEngine::add_to_game(const std::string& name, Environment* e) {
   m_environments.insert(std::make_pair(name,e));
 }
 
-void GameEngine::add_to_game(const std::string& name, Character* c) {
+void cprog_game::GameEngine::add_to_game(const std::string& name, Character* c) {
   m_characters.insert(std::make_pair(name,c));
 }
 
-void GameEngine::erase_and_free(const std::string &name, Object *o) {
+void cprog_game::GameEngine::erase_and_free(const std::string &name, Object *o) {
   typedef std::multimap<std::string,Object*> objmap;
   std::pair<objmap::iterator,objmap::iterator> p = m_objects.equal_range(name);
   for(objmap::iterator it = p.first; it != p.second; ++it) {
@@ -50,12 +50,12 @@ void GameEngine::erase_and_free(const std::string &name, Object *o) {
   }
 }
 
-Object* GameEngine::resolve_obj(const std::string &name) const {
+cprog_game::Object* cprog_game::GameEngine::resolve_obj(const std::string &name) const {
   ObjectContainer::const_iterator it = m_objects.find(name);
   return it != m_objects.end() ? it->second : NULL;
 }
 
-void GameEngine::main_loop() {
+void cprog_game::GameEngine::main_loop() {
   init();
   m_running = true;
   while(m_running) {
@@ -65,7 +65,7 @@ void GameEngine::main_loop() {
   }
 }
 
-void GameEngine::game_finished() {
+void cprog_game::GameEngine::game_finished() {
   m_running = false;
 }
 

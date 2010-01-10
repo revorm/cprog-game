@@ -21,7 +21,7 @@
 #include <cassert>
 #include <cstdlib>
 
-void GameEngine::init() {
+void cprog_game::GameEngine::init() {
   srand(unsigned(time(NULL)));
   Environment* e = new ComputerRoom("room","Computer room");
   Environment* out = new Outdoor("osquars_backe","You feel a strong wind blowing from the south, if you drop something here "

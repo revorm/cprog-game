@@ -4,7 +4,7 @@
 
 #include <sstream>
 
-void PlayerController::PlayerCommands::drop(const std::vector<std::string>& v) {
+void cprog_game::PlayerController::PlayerCommands::drop(const std::vector<std::string>& v) {
   if(!v.size()) {
     m_player->inform("You dropped nothing. And nothing happend. Happy?");
     return;
@@ -16,7 +16,7 @@ void PlayerController::PlayerCommands::drop(const std::vector<std::string>& v) {
   }
 }
 
-void PlayerController::PlayerCommands::go(const std::vector<std::string>& v) {
+void cprog_game::PlayerController::PlayerCommands::go(const std::vector<std::string>& v) {
   if(!v.size()) {
     m_player->inform("No direction given. Where do you want to go?");
     return;
@@ -41,20 +41,20 @@ void PlayerController::PlayerCommands::go(const std::vector<std::string>& v) {
   }
 }
 
-void PlayerController::PlayerCommands::help(const std::vector<std::string>& v) {
+void cprog_game::PlayerController::PlayerCommands::help(const std::vector<std::string>& v) {
   m_player->inform(" go - Makes the player go in a direction, if an exit in that direction exists.");
   m_player->inform("Valid directions are: west, east, north and south.");
   m_player->inform(" help - This text.");
   m_player->inform(" look - don't remember what room you are in? Then this is for you.");
 }
 
-void PlayerController::PlayerCommands::look(const std::vector<std::string>& v) {
+void cprog_game::PlayerController::PlayerCommands::look(const std::vector<std::string>& v) {
   Environment* env = m_player->environment();
-  m_player->inform("You are in" + env->name());
+  m_player->inform("You are in " + env->name());
   m_player->inform(env->description());
 }
 
-void PlayerController::PlayerCommands::pocket(const std::vector<std::string>& v) {
+void cprog_game::PlayerController::PlayerCommands::pocket(const std::vector<std::string>& v) {
   if(m_player->inventory().size()) {
     std::ostringstream s;
     s << "You have ";
@@ -69,11 +69,11 @@ void PlayerController::PlayerCommands::pocket(const std::vector<std::string>& v)
   }
 }
 
-void PlayerController::PlayerCommands::quit(const std::vector<std::string>& v) {
+void cprog_game::PlayerController::PlayerCommands::quit(const std::vector<std::string>& v) {
   GameEngine::get()->game_finished();
 }
 
-void PlayerController::PlayerCommands::take(const std::vector<std::string>& v) {
+void cprog_game::PlayerController::PlayerCommands::take(const std::vector<std::string>& v) {
   if(!v.size()) {
     m_player->inform("No objects given. Don't you want to take something?");
     return;
@@ -85,4 +85,4 @@ void PlayerController::PlayerCommands::take(const std::vector<std::string>& v) {
   }
 }
 
-PlayerController::PlayerCommands::PlayerCommands(Player* p): m_player(p){}
+cprog_game::PlayerController::PlayerCommands::PlayerCommands(Player* p): m_player(p){}

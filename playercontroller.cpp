@@ -3,29 +3,29 @@
 #include <iostream>
 #include <sstream>
 
-PlayerController::PlayerController(Player* p) : m_commands(p), m_player(p) {
-  m_translator["drop"]    = &PlayerController::PlayerCommands::drop;
-  m_translator["go"]      = &PlayerController::PlayerCommands::go;
-  m_translator["exit"]    = &PlayerController::PlayerCommands::quit;
-  m_translator["help"]    = &PlayerController::PlayerCommands::help;
-  m_translator["look"]    = &PlayerController::PlayerCommands::look;
-  m_translator["pocket"]  = &PlayerController::PlayerCommands::pocket;
-  m_translator["quit"]    = &PlayerController::PlayerCommands::quit;
-  m_translator["take"]    = &PlayerController::PlayerCommands::take;
+cprog_game::PlayerController::PlayerController(Player* p) : m_commands(p), m_player(p) {
+  m_translator["drop"]    = &cprog_game::PlayerController::PlayerCommands::drop;
+  m_translator["go"]      = &cprog_game::PlayerController::PlayerCommands::go;
+  m_translator["exit"]    = &cprog_game::PlayerController::PlayerCommands::quit;
+  m_translator["help"]    = &cprog_game::PlayerController::PlayerCommands::help;
+  m_translator["look"]    = &cprog_game::PlayerController::PlayerCommands::look;
+  m_translator["pocket"]  = &cprog_game::PlayerController::PlayerCommands::pocket;
+  m_translator["quit"]    = &cprog_game::PlayerController::PlayerCommands::quit;
+  m_translator["take"]    = &cprog_game::PlayerController::PlayerCommands::take;
 }
-std::istream& PlayerController::in() {
+std::istream& cprog_game::PlayerController::in() {
   return std::cin;
 }
 
-std::ostream& PlayerController::out() {
+std::ostream& cprog_game::PlayerController::out() {
   return std::cout;
 }
 
-PlayerController::PlayerCommands* PlayerController::commands() {
+cprog_game::PlayerController::PlayerCommands* cprog_game::PlayerController::commands() {
   return &m_commands;
 }
 
-void PlayerController::get_command() {
+void cprog_game::PlayerController::get_command() {
   std::string line, first_token, token;
   std::vector<std::string> tokens;
   out() << "€ ";

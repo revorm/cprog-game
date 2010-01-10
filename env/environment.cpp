@@ -28,6 +28,11 @@ std::string cprog_game::Environment::description() const {
     ; it != m_objects.end(); ++it) {
     s << it->first << " ";
   }
+  s << std::endl;
+  s << "Characters: ";
+  for(std::vector<Character*>::const_iterator it = m_characters.begin(); it != m_characters.end(); ++it) {
+    s << it->name() << " ";
+  }
   return s.str();
 }
 

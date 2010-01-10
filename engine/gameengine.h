@@ -38,8 +38,8 @@ namespace cprog_game
     void game_finished();
 
   private:
-    void main_loop();
-    void init();
+    void main_loop(bool interactive);
+    void init(bool interactive);
     friend void run_game();
     GameEngine() { if(s_instance == 0) s_instance = this;
                    else throw std::logic_error(

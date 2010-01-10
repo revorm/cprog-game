@@ -20,7 +20,7 @@ bool cprog_game::Character::go(Environment::Direction d) {
   return neighbor;
 }
 
-bool cprog_game::Character::pick_up(const std::string& name) {
+bool cprog_game::Character::take(const std::string& name) {
   Object* o = m_current_environment->get_item(name);
   if(o) {
     m_inventory.insert(std::make_pair(name,o));

@@ -108,7 +108,9 @@ void cprog_game::PlayerController::PlayerCommands::wait(const std::vector<std::s
       break;
     case 5: m_player->inform("You are a bit sleepy");
       break;
-      case 6: m_player->inform("Your sleepiness got so big that instead of doing something (anything at all actually) you instead fell asleep.");
+    case 6: m_player->inform("You are really sleepy");
+      break;
+    default: m_player->inform("Your sleepiness got so big that instead of doing something (anything at all actually) you instead fell asleep.");
       m_player->inform("Sleeping at school? Not cool.");
       m_player->inform("Neither thinks the guards walking around school at midnight, who walks you out.");
       m_player->inform("While there you realize you have no card to get in at the now locked school so you go home and forget everything about finishing a game in c++.");
@@ -122,6 +124,7 @@ void cprog_game::PlayerController::PlayerCommands::wait(const std::vector<std::s
 }
 
 void cprog_game::PlayerController::PlayerCommands::use(const std::vector<std::string> &v) {
+  m_wait_counter = 0; // no more waiting
   if(v.size()) {
     const Character::Inventory_t& inv(m_player->inventory());
     Character::Inventory_t::const_iterator it = inv.find(v[0]);
@@ -138,6 +141,7 @@ void cprog_game::PlayerController::PlayerCommands::use(const std::vector<std::st
 }
 
 void cprog_game::PlayerController::PlayerCommands::talk(const std::vector<std::string> &v) {
+  m_wait_counter = 0; // no more waiting
   if(v.size()) {
     Character* c = 0;
     const std::vector<Character*>& chars(m_player->environment()->characters());
@@ -161,6 +165,7 @@ void cprog_game::PlayerController::PlayerCommands::talk(const std::vector<std::s
 }
 
 void cprog_game::PlayerController::PlayerCommands::search(const std::vector<std::string> &v) {
+  m_wait_counter = 0; // no more waiting
   m_player->environment()->interact(m_player);
 }
 

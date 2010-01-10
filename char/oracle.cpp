@@ -1,8 +1,8 @@
 #include "oracle.h"
 
-#include <cstdlib>
+#include <string>
 
-static const char *const messages[] = {
+static const std::string messages[] = {
 "As I see it, yes",
 "It is certain",
 "It is decidedly so",
@@ -25,7 +25,7 @@ static const char *const messages[] = {
 "Very doubtful" };
 
 void cprog_game::Oracle::interact(Character *c) {
-  unsigned int r = rand() % sizeof(messages);
+  unsigned int r = rand() % sizeof(messages)/sizeof(std::string*);
   say_to(c,messages[r]);
 }
 
@@ -37,5 +37,8 @@ void cprog_game::Oracle::action() {
     Environment::Direction_map::const_iterator it = m.begin();
     while(r--) { ++it; }
     go(it->first);
+    if(environment()->characters().size() > 1){
+      interact(environment()->characters()[0]);
+    }
   }
 }

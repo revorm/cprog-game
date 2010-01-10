@@ -59,8 +59,11 @@ void cprog_game::GameEngine::init() {
   sleven->add_neighbor(Environment::NORTH, out);
 
   // create objects and add to game
+  // container
   Object* o = new IdeaContainer();
   esc->put_item(o);
+  add_to_game(o);
+  // ideas
   Idea* good_idea_1 = new Idea("idea1", "KISS - keep it simple stupid", 10);
   add_to_game(good_idea_1);
   Idea* good_idea_2 = new Idea("idea2", "I can teach you everything about inheritance that you will ever need.", 40);
@@ -73,15 +76,15 @@ void cprog_game::GameEngine::init() {
   add_to_game(bad_idea_2);
   
   // create characters and add to game
-  Friend* david = new Friend("David Björklund", computer_room, good_idea_2, 10);
+  Friend* david = new Friend("David Björklund", computer_room, good_idea_2, 2);
   add_to_game(david);
-  Friend* pelle = new Friend("Per Almquist", computer_room, good_idea_1, 20);
+  Friend* pelle = new Friend("Per Almquist", computer_room, good_idea_1, 3);
   add_to_game(pelle);
-  Friend* erik = new Friend("Erik Hammar", esc, good_idea_3, 9);
+  Friend* erik = new Friend("Erik Hammar", esc, good_idea_3, 1);
   add_to_game(erik);
-  Friend* svamp = new Friend("Johan Björk", sleven, bad_idea_1, 8);
+  Friend* svamp = new Friend("Johan Björk", sleven, bad_idea_1, 4);
   add_to_game(svamp);
-  Friend* ture = new Friend("Ture Tekonolog", e_house, bad_idea_2, 40);
+  Friend* ture = new Friend("Ture Tekonolog", e_house, bad_idea_2, 5);
   add_to_game(ture);
 
   if(m_interactive) {

@@ -141,20 +141,23 @@ void cprog_game::PlayerController::PlayerCommands::talk(const std::vector<std::s
   if(v.size()) {
     Character* c = 0;
     const std::vector<Character*>& chars(m_player->environment()->characters());
-
+    std::string name = v[0];
+    for(size_t i = 1; i < v.size(); ++i) {
+      name += " " + v[i];
+    }
     for(std::vector<Character*>::const_iterator it = chars.begin(); it != chars.end(); ++it) {
-      if((*it)->name() == v[0]) {
+      if((*it)->name() == name) {
         c = *it;
       }
     }
 
     if(c) {
       c->interact(m_player);
+      return;
     }
 
-  } else {
-    m_player->inform("Talk to whom?");
   }
+  m_player->inform("Talk to whom?");
 }
 
 void cprog_game::PlayerController::PlayerCommands::search(const std::vector<std::string> &v) {

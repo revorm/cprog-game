@@ -23,16 +23,20 @@ void cprog_game::Friend::action() {
 void cprog_game::Friend::interact(Character *c) {
   Friend* f = dynamic_cast<Friend*>(c);  
   Player* p = dynamic_cast<Player*>(c);
-  if(p) {
-    Outdoor* e = dynamic_cast<Outdoor*>(environment());
-    if(!e) {
+  Outdoor* o = dynamic_cast<Outdoor*>(environment());
+  
+  if(!o) {
+    if(p) {
       say_to(p,"Here's an idea for your game!");
       environment()->put_item(m_idea);
-    } else {
+    } else if(f) {
+      say_to(f, "Let's switch ideas. I don't want mine any more.");
+      std::swap(m_idea, f->m_idea);
+    }
+  } else {
+    if(p)
+    {
       say_to(p,"It's too windy here, you'll not understand it.");
     }
-  } else if(f) {
-    say_to(f, "Let's switch ideas. I don't want mine any more.");
-    std::swap(m_idea, f->m_idea);
   }
 }

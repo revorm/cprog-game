@@ -1,14 +1,30 @@
 #include "examiner.h"
 #include "../engine/gameengine.h"
 #include "../obj/gamesourcetarball.h"
+#include "../env/examineroffice.h"
+#include "../env/fikaroom.h"
 
 #include <sstream>
+#include <cstdlib>
+
+const int cprog_game::Examiner::FIKA_TIMEOUT = 4; // examiner hides in fika-room for 4 turns
 
 cprog_game::Examiner::Examiner(
     const std::string& name, Environment* start_env) : Character(name,start_env), m_examining(false), m_should_exit(false), m_examiner_mood(BAD) {
 }
 
 void cprog_game::Examiner::action() {
+  if(dynamic_cast<ExaminerOffice*>(m_current_environment)) {
+    if(rand() < (RAND_MAX/8) ) { // approx 12,5% probab.
+      m_move_timer = 0;
+      go(Environment::NORTH);
+    }
+  } else if(dynamic_cast<FikaRoom*>(m_current_environment)) {
+    ++m_move_timer;
+    if(m_move_timer >= FIKA_TIMEOUT) {
+      go(Environment::SOUTH);
+    }
+  }
 }
 
 void cprog_game::Examiner::interact(Character *c) {

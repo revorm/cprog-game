@@ -124,6 +124,7 @@ void cprog_game::PlayerController::PlayerCommands::wait(const std::vector<std::s
 }
 
 void cprog_game::PlayerController::PlayerCommands::use(const std::vector<std::string> &v) {
+  m_wait_counter = 0; // no more waiting
   if(v.size()) {
     const Character::Inventory_t& inv(m_player->inventory());
     Character::Inventory_t::const_iterator it = inv.find(v[0]);
@@ -140,6 +141,7 @@ void cprog_game::PlayerController::PlayerCommands::use(const std::vector<std::st
 }
 
 void cprog_game::PlayerController::PlayerCommands::talk(const std::vector<std::string> &v) {
+  m_wait_counter = 0; // no more waiting
   if(v.size()) {
     Character* c = 0;
     const std::vector<Character*>& chars(m_player->environment()->characters());
@@ -163,6 +165,7 @@ void cprog_game::PlayerController::PlayerCommands::talk(const std::vector<std::s
 }
 
 void cprog_game::PlayerController::PlayerCommands::search(const std::vector<std::string> &v) {
+  m_wait_counter = 0; // no more waiting
   m_player->environment()->interact(m_player);
 }
 

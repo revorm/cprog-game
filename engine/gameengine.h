@@ -40,7 +40,7 @@ namespace cprog_game
   private:
     void main_loop(bool interactive);
     void init(bool interactive);
-    friend void run_game();
+    friend void cprog_game::run_game(bool);
     GameEngine() { if(s_instance == 0) s_instance = this;
                    else throw std::logic_error(
                        "Already created an instance of GameEngine"); }

@@ -20,6 +20,8 @@
 
 #include <cassert>
 #include <cstdlib>
+#include <iostream>
+#include <fstream>
 
 void cprog_game::GameEngine::init(bool interactive) {
   srand(unsigned(time(NULL)));
@@ -41,9 +43,15 @@ void cprog_game::GameEngine::init(bool interactive) {
   if(interactive) {
     Player* p = new Player("player",out);
     add_to_game(p->name(),p);
+    {
+      std::ifstream help_file("readme.txt",std::ios_base::in);
+      std::string line;
+      while(std::getline(help_file,line)) {
+        p->inform(line);
+      }
+    }
+    p->inform("\n");
 
-    p->inform("Welcome to cprog-game!");
-    p->inform(" - A game written in c++ about writing a game in c++\n");
     p->controller()->commands()->look(std::vector<std::string>());
   }
   // m_running = true;

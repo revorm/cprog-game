@@ -2,6 +2,8 @@
 
 #include "../env/environment.h"
 #include "../env/computerroom.h"
+#include "../env/examineroffice.h"
+#include "../env/fikaroom.h"
 #include "../env/outdoor.h"
 #include "../env/sleven.h"
 #include "../env/theescape.h"

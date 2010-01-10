@@ -14,14 +14,12 @@ int cprog_game::Sleven::coffee_count = 0;
 void cprog_game::Sleven::interact(Character *c) {
   const static std::string coffee("coffee");
   std::stringstream s(coffee,std::ios_base::in);
-  Character::Inventory_t::const_iterator it = c->inventory().lower_bound(std::string("coffee"));
-  if(it->first.find("coffee") != 0) {
-    s << coffee_count++;
+  s << coffee_count++;
 
-    Coffee* co = new Coffee(s.str());
-    GameEngine::get()->add_to_game(s.str(),co);
+  Coffee* co = new Coffee(s.str());
+  GameEngine::get()->add_to_game(s.str(),co);
 
-    // drop coffee on floor...
-    c->environment()->put_item(co);
-  }
+  // drop coffee on floor...
+  put_item(co);
+
 }

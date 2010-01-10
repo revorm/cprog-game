@@ -9,6 +9,9 @@ namespace cprog_game
   {
   public:
     TheEscape(const std::string& name, const std::string& desc) : Environment(name,desc) {}
+
+    void interact(Character *);
+    static int s_apple_counter;
   };
 }
 

@@ -18,6 +18,8 @@ namespace cprog_game
     void inform(const std::string &s);
   
     void action();
+
+    bool take(const std::string &name);
   
     void interact(Character *) {}
   

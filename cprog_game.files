@@ -3,6 +3,7 @@ gameelement.h
 .gitignore
 libs.mak
 Makefile
+playercommands.cpp
 playercontroller.cpp
 playercontroller.h
 char/character.cpp
@@ -18,6 +19,7 @@ char/player.cpp
 char/player.h
 engine/gameengine.cpp
 engine/gameengine.h
+engine/init.cpp
 engine/Makefile
 env/computerroom.cpp
 env/computerroom.h
@@ -43,4 +45,3 @@ obj/idea.h
 obj/Makefile
 obj/object.cpp
 obj/object.h
-engine/init.cpp

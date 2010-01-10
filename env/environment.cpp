@@ -3,6 +3,7 @@
 #include <sstream>
 
 #include "../obj/object.h"
+#include "../char/character.h"
 
 const cprog_game::Environment::Direction_map cprog_game::Environment::directions() const {
   return m_neighbors;
@@ -27,6 +28,11 @@ std::string cprog_game::Environment::description() const {
   for(Inventory_t::const_iterator it = m_objects.begin()
     ; it != m_objects.end(); ++it) {
     s << it->first << " ";
+  }
+  s << std::endl;
+  s << "Characters: ";
+  for(std::vector<Character*>::const_iterator it = m_characters.begin(); it != m_characters.end(); ++it) {
+    s << (*it)->name() << " ";
   }
   return s.str();
 }

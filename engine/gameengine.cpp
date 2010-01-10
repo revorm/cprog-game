@@ -55,8 +55,8 @@ cprog_game::Object* cprog_game::GameEngine::resolve_obj(const std::string &name)
   return it != m_objects.end() ? it->second : NULL;
 }
 
-void cprog_game::GameEngine::main_loop() {
-  init();
+void cprog_game::GameEngine::main_loop(bool interactive) {
+  init(interactive);
   m_running = true;
   while(m_running) {
     for(CharacterContainer::iterator it = m_characters.begin(); it != m_characters.end(); ++it) {

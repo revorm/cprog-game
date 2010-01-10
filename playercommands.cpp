@@ -78,7 +78,7 @@ void cprog_game::PlayerController::PlayerCommands::take(const std::vector<std::s
     m_player->inform("No objects given. Don't you want to take something?");
     return;
   }
-  if(m_player->pick_up(v[0])) {
+  if(m_player->take(v[0])) {
     m_player->inform(v[0] + " has been picked up to your pocket.");
   } else {
     m_player->inform(v[0] + " could not be taken. Sure you are in the right room?");

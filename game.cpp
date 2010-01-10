@@ -9,14 +9,19 @@
 
 namespace cprog_game
 {
-  void run_game() {
-    cprog_game::GameEngine g;
-    g.main_loop();
+  void run_game(bool interactive) {
+    GameEngine g;
+    g.main_loop(interactive);
   }
 }
 
 int main(int argc, char **argv) {
+  using namespace cprog_game;
   std::ios_base::sync_with_stdio(false);
-  cprog_game::run_game();
+  bool interactive = true;
+  if(argc > 1 && argv[1][0] == 'a') {
+    interactive = false;
+  }
+  run_game(interactive);
   return 0;
 }

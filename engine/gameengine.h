@@ -38,9 +38,9 @@ namespace cprog_game
     void game_finished();
 
   private:
-    void main_loop();
-    void init();
-    friend void run_game();
+    void main_loop(bool interactive);
+    void init(bool interactive);
+    friend void cprog_game::run_game(bool);
     GameEngine() { if(s_instance == 0) s_instance = this;
                    else throw std::logic_error(
                        "Already created an instance of GameEngine"); }

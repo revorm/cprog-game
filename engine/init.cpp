@@ -89,6 +89,9 @@ void cprog_game::GameEngine::init() {
 
   Examiner* alex = new Examiner("Alexander Baltazis", office);
   add_to_game(alex);
+  
+  Oracle* oracle = new Oracle("Oraklet", sleven);
+  add_to_game(oracle);
 
   if(m_interactive) {
     Player* p = new Player("player",out);

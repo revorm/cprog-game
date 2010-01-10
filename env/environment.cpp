@@ -63,7 +63,7 @@ void cprog_game::Environment::put_item(Object* o) {
   m_objects.insert(std::make_pair(o->name(),o));
 }
 
-const cprog_game::Environment::Inventory_t cprog_game::Environment::objects() const {
+const cprog_game::Environment::Inventory_t& cprog_game::Environment::objects() const {
   return m_objects;
 }
 

@@ -29,7 +29,7 @@ namespace cprog_game{
     virtual Object* get_item(const std::string& name);
     virtual void put_item(Object* o);
   
-    const Inventory_t objects() const;
+    const Inventory_t& objects() const;
   
     void interact(Character *) {}
 

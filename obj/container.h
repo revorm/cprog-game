@@ -20,6 +20,8 @@ namespace cprog_game
     void interact(Character* c);
   
     int max_weight() const;
+
+    std::string description() const;
   
   protected:
     int m_max_weight;

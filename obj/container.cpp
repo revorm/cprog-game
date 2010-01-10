@@ -5,6 +5,7 @@
 #include <numeric>
 #include <algorithm>
 #include <functional>
+#include <sstream>
 
 static int weight_op(int weight, cprog_game::Object* o) {
   return weight + o->weight();
@@ -50,4 +51,14 @@ void cprog_game::Container::interact(Character* c) {
 
 int cprog_game::Container::max_weight() const {
   return m_max_weight;
+}
+
+std::string cprog_game::Container::description() const {
+  std::stringstream ss(m_description,std::ios_base::in);
+  ss << " ";
+  for(size_t i = 0; i < m_contents.size(); ++i) {
+    ss << m_contents[i]->name() << " : " << m_contents[i]->description();
+  }
+  ss << "Total Value: " << value();
+  return ss.str();
 }

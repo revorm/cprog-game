@@ -3,5 +3,5 @@
 #include "../obj/object.h"
 
 void cprog_game::Outdoor::put_item(Object *o) {
-  GameEngine::get()->erase_and_free(o->name(),o);
+  GameEngine::get()->erase_and_free(o);
 }

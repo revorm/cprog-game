@@ -8,17 +8,17 @@
 cprog_game::GameEngine* cprog_game::GameEngine::s_instance = 0;
 
 cprog_game::GameEngine::~GameEngine() {
-  for(std::map<std::string,Object*>::const_iterator it =
+  for(ObjectContainer::const_iterator it =
       m_objects.begin(); it != m_objects.end(); ++it) {
-    delete it->second;
+    delete *it;
   }
-  for(std::map<std::string,Environment*>::const_iterator it =
+  for(EnvironmentContainer::const_iterator it =
       m_environments.begin(); it != m_environments.end(); ++it) {
-    delete it->second;
+    delete *it;
   }
-  for(std::map<std::string,Character*>::const_iterator it =
+  for(CharacterContainer::const_iterator it =
       m_characters.begin(); it != m_characters.end(); ++it) {
-    delete it->second;
+    delete *it;
   }
 }
 
@@ -27,32 +27,34 @@ cprog_game::GameEngine* cprog_game::GameEngine::get() {
       throw std::logic_error("GameEngine not initialized");
 }
 
-void cprog_game::GameEngine::add_to_game(const std::string& name, Object* o) {
-  m_objects.insert(std::make_pair(name,o));
+// void cprog_game::GameEngine::add_to_game(GameElement* g){
+//   m_game_elements.push_back(g);
+// }
+
+// m_game_elements.push_back(GameElement* g){
+//   
+// }
+
+void cprog_game::GameEngine::add_to_game(Object* o) {
+  m_objects.push_back(o);
 }
 
-void cprog_game::GameEngine::add_to_game(const std::string& name, Environment* e) {
-  m_environments.insert(std::make_pair(name,e));
+void cprog_game::GameEngine::add_to_game(Environment* e) {
+  m_environments.push_back(e);
 }
 
-void cprog_game::GameEngine::add_to_game(const std::string& name, Character* c) {
-  m_characters.insert(std::make_pair(name,c));
+void cprog_game::GameEngine::add_to_game(Character* c) {
+  m_characters.push_back(c);
 }
 
-void cprog_game::GameEngine::erase_and_free(const std::string &name, Object *o) {
-  typedef std::multimap<std::string,Object*> objmap;
-  std::pair<objmap::iterator,objmap::iterator> p = m_objects.equal_range(name);
-  for(objmap::iterator it = p.first; it != p.second; ++it) {
-    if(it->second == o) {
+void cprog_game::GameEngine::erase_and_free(Object *o) {
+  for(ObjectContainer::iterator it = m_objects.begin(); it != m_objects.end(); ++it) {
+    if(*it== o) {
+      delete *it;
       m_objects.erase(it);
       return;
     }
   }
-}
-
-cprog_game::Object* cprog_game::GameEngine::resolve_obj(const std::string &name) const {
-  ObjectContainer::const_iterator it = m_objects.find(name);
-  return it != m_objects.end() ? it->second : NULL;
 }
 
 void cprog_game::GameEngine::main_loop(bool interactive) {
@@ -60,7 +62,7 @@ void cprog_game::GameEngine::main_loop(bool interactive) {
   m_running = true;
   while(m_running) {
     for(CharacterContainer::iterator it = m_characters.begin(); it != m_characters.end(); ++it) {
-      it->second->action();
+      (*it)->action();
     }
   }
 }

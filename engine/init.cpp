@@ -29,20 +29,20 @@ void cprog_game::GameEngine::init(bool interactive) {
   srand(unsigned(time(NULL)));
   // Create environments and add to the game
   Environment* computer_room = new ComputerRoom("room", "Computer room");
-  add_to_game(computer_room->name(), computer_room);
+  add_to_game(computer_room);
   Environment* e_house = new Environment("e_house", "A house at kth.");
-  add_to_game(e_house->name(), e_house);
+  add_to_game(e_house);
   Environment* esc = new TheEscape("the_escape", "A room full of computer science students, you recognize most of them.");
-  add_to_game(esc->name(), esc);
+  add_to_game(esc);
   Environment* fika_room = new FikaRoom("fika_room", "A room where the examinator gets his coffe.");
-  add_to_game(fika_room->name(), fika_room);
+  add_to_game(fika_room);
   Environment* office = new ExaminerOffice("office", "The examinators office.");
-  add_to_game(office->name(), office);
+  add_to_game(office);
   Environment* out = new Outdoor("osquars_backe", "You feel a strong wind blowing from the south, if you drop something here "
                                  "it's likely to blow away and disappear forever.");
-  add_to_game(out->name(), out);
+  add_to_game(out);
   Environment* sleven = new Sleven("7-11", "Your favourite place to buy a coffee.");
-  add_to_game(sleven->name(), sleven);
+  add_to_game(sleven);
 
   // create neighborhood
   computer_room->add_neighbor(Environment::SOUTH, e_house);
@@ -61,11 +61,32 @@ void cprog_game::GameEngine::init(bool interactive) {
   // create objects and add to game
   Object* o = new IdeaContainer();
   esc->put_item(o);
+  Idea* good_idea_1 = new Idea("idea1", "KISS - keep it simple stupid", 10);
+  add_to_game(good_idea_1);
+  Idea* good_idea_2 = new Idea("idea2", "I can teach you everything about inheritance that you will ever need.", 40);
+  add_to_game(good_idea_2);
+  Idea* good_idea_3 = new Idea("idea3", "Dude, templates rock!", 30);
+  add_to_game(good_idea_3);
+  Idea* bad_idea_1 = new Idea("idea4",  "Object oriented programming is overrated.", -30);
+  add_to_game(bad_idea_1);
+  Idea* bad_idea_2 = new Idea("idea5",  "void* is your friend.", -20);
+  add_to_game(bad_idea_2);
   
   // create characters and add to game
+  Friend* david = new Friend("David Björklund", computer_room, good_idea_2, 10);
+  add_to_game(david);
+  Friend* pelle = new Friend("Per Almquist", computer_room, good_idea_1, 20);
+  add_to_game(pelle);
+  Friend* erik = new Friend("Erik Hammar", esc, good_idea_3, 9);
+  add_to_game(erik);
+  Friend* svamp = new Friend("Johan Björk", sleven, bad_idea_1, 8);
+  add_to_game(svamp);
+  Friend* ture = new Friend("Ture Tekonolog", e_house, bad_idea_2, 40);
+  add_to_game(ture);
+
   if(interactive) {
     Player* p = new Player("player",out);
-    add_to_game(p->name(),p);
+    add_to_game(p);
     {
       std::ifstream help_file("readme.txt",std::ios_base::in);
       std::string line;

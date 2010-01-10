@@ -17,7 +17,7 @@ void cprog_game::Sleven::interact(Character *c) {
   s << coffee_count++;
 
   Coffee* co = new Coffee(s.str());
-  GameEngine::get()->add_to_game(s.str(),co);
+  GameEngine::get()->add_to_game(co);
 
   // drop coffee on floor...
   put_item(co);

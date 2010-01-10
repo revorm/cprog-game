@@ -2,38 +2,32 @@
 #define GAMEENGINE_H
 
 #include <string>
-#include <map>
+#include <vector>
 #include <stdexcept>
 #include <ostream>
 
 namespace cprog_game
 {
-  class Object;
-  class Environment;
   class Character;
+  class Environment;
+  class Object;
   
   class GameEngine
   {
   public:
 
-    typedef std::multimap<std::string,Object*> ObjectContainer;
-    typedef std::multimap<std::string,Character*> CharacterContainer;
-    typedef std::multimap<std::string,Environment*> EnvironmentContainer;
+    typedef std::vector<Character*> CharacterContainer;
+    typedef std::vector<Environment*> EnvironmentContainer;
+    typedef std::vector<Object*> ObjectContainer;
 
     ~GameEngine();
     static GameEngine* get();
 
-    void add_to_game(const std::string& name, Object* o);
-    void add_to_game(const std::string& name, Character* c);
-    void add_to_game(const std::string& name, Environment* e);
+    void add_to_game(Character* c);
+    void add_to_game(Environment* e);
+    void add_to_game(Object* o);
 
-    void erase_and_free(const std::string& name, Object* o);
-    void erase_and_free(const std::string& name, Character* o);
-    void erase_and_free(const std::string& name, Environment* o);
-
-    Object* resolve_obj(const std::string& name) const;
-    Character* resolve_char(const std::string& name) const;
-    Environment* resolve_env(const std::string& name) const;
+    void erase_and_free(Object *o);
 
     void game_finished();
 

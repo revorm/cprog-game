@@ -8,12 +8,9 @@ namespace cprog_game
   class Idea : public Object
   {
   public:
-    Idea(const std::string& name, const std::string& desc, int value, bool good_idea) :
-        Object(name,1,value,desc), m_good_idea(good_idea) {}
-  
-    bool is_good() const;
-  private:
-    bool m_good_idea;
+    Idea(const std::string& name, const std::string& desc, int value) :
+        Object(name,1,value,desc){}
+    void interact(Character*);
   };
 }
 

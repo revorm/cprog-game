@@ -25,7 +25,7 @@ void cprog_game::ComputerRoom::interact(Character* c) {
       GameSourceTarball* g = new GameSourceTarball(
           s.str(),"You think it's a great c++ game",
           it->second->value());
-      GameEngine::get()->add_to_game(g->name(),g);
+      GameEngine::get()->add_to_game(g);
       put_item(g);
     } else {
       c->inform("You don't have an idea container");

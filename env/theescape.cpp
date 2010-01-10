@@ -11,6 +11,6 @@ void cprog_game::TheEscape::interact(Character *c) {
   std::stringstream s(apple_name,std::ios_base::in);
   s << s_apple_counter++;
   Apple* a = new Apple(s.str());
-  GameEngine::get()->add_to_game(a->name(),a);
+  GameEngine::get()->add_to_game(a);
   put_item(a);
 }

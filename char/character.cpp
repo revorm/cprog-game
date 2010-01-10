@@ -2,9 +2,15 @@
 
 #include "../engine/gameengine.h"
 
+#include <iostream>
+
 const int cprog_game::Character::START_ENERGY = 100;
 
-void cprog_game::Character::inform(const std::string &s) {}
+void cprog_game::Character::inform(const std::string &s) {
+  if(!GameEngine::get()->interactive()) {
+    std::cout << name() << " " << s << std::endl;
+  }
+}
 
 cprog_game::Environment* cprog_game::Character::environment() const {
   return m_current_environment;
@@ -13,6 +19,7 @@ cprog_game::Environment* cprog_game::Character::environment() const {
 bool cprog_game::Character::go(Environment::Direction d) {
   Environment* neighbor = m_current_environment->neighbor(d);
   if(neighbor && neighbor->can_enter(this)) {
+    inform("moving to " + neighbor->name());
     m_current_environment->leave(this);
     m_current_environment = neighbor;
     m_current_environment->enter(this);

@@ -55,6 +55,7 @@ void cprog_game::Examiner::interact(Character *c) {
 }
 
 void cprog_game::Examiner::inform(const std::string &s) {
+  Character::inform(s);
   if(m_examining && s.find("You play the game")) {
     size_t pos = s.find_first_of("0123456789");
     std::istringstream iss(s.substr(pos));

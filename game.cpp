@@ -10,8 +10,8 @@
 namespace cprog_game
 {
   void run_game(bool interactive) {
-    GameEngine g;
-    g.main_loop(interactive);
+    GameEngine g(interactive);
+    g.main_loop();
   }
 }
 

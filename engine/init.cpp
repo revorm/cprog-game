@@ -25,7 +25,7 @@
 #include <iostream>
 #include <fstream>
 
-void cprog_game::GameEngine::init(bool interactive) {
+void cprog_game::GameEngine::init() {
   srand(unsigned(time(NULL)));
   // Create environments and add to the game
   Environment* computer_room = new ComputerRoom("room", "Computer room");
@@ -84,7 +84,7 @@ void cprog_game::GameEngine::init(bool interactive) {
   Friend* ture = new Friend("Ture Tekonolog", e_house, bad_idea_2, 40);
   add_to_game(ture);
 
-  if(interactive) {
+  if(m_interactive) {
     Player* p = new Player("player",out);
     add_to_game(p);
     {

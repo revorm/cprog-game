@@ -31,11 +31,14 @@ namespace cprog_game
 
     void game_finished();
 
+    bool interactive() const;
+
   private:
-    void main_loop(bool interactive);
-    void init(bool interactive);
+    void main_loop();
+    void init();
     friend void cprog_game::run_game(bool);
-    GameEngine() { if(s_instance == 0) s_instance = this;
+    GameEngine(bool interactive) : m_running(false), m_interactive(interactive) {
+                   if(s_instance == 0) s_instance = this;
                    else throw std::logic_error(
                        "Already created an instance of GameEngine"); }
 
@@ -44,6 +47,7 @@ namespace cprog_game
     CharacterContainer m_characters;
     EnvironmentContainer m_environments;
     bool m_running;
+    bool m_interactive;
 
   };
 } /* cprog_game */ 

@@ -57,8 +57,8 @@ void cprog_game::GameEngine::erase_and_free(Object *o) {
   }
 }
 
-void cprog_game::GameEngine::main_loop(bool interactive) {
-  init(interactive);
+void cprog_game::GameEngine::main_loop() {
+  init();
   m_running = true;
   while(m_running) {
     for(CharacterContainer::iterator it = m_characters.begin(); it != m_characters.end(); ++it) {
@@ -71,3 +71,6 @@ void cprog_game::GameEngine::game_finished() {
   m_running = false;
 }
 
+bool cprog_game::GameEngine::interactive() const {
+  return m_interactive;
+}

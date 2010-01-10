@@ -32,6 +32,8 @@ namespace cprog_game{
     const Inventory_t objects() const;
   
     void interact(Character *) {}
+
+    virtual bool can_enter(Character *);
   
     friend class GameEngine;
   

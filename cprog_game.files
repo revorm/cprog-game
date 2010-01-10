@@ -45,3 +45,7 @@ obj/idea.h
 obj/Makefile
 obj/object.cpp
 obj/object.h
+env/fikaroom.h
+env/fikaroom.cpp
+env/examineroffice.h
+env/examineroffice.cpp

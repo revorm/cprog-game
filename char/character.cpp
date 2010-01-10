@@ -12,10 +12,12 @@ cprog_game::Environment* cprog_game::Character::environment() const {
 
 bool cprog_game::Character::go(Environment::Direction d) {
   Environment* neighbor = m_current_environment->neighbor(d);
-  if(neighbor) {
+  if(neighbor && neighbor->can_enter(this)) {
     m_current_environment->leave(this);
     m_current_environment = neighbor;
     m_current_environment->enter(this);
+  } else {
+    return false;
   }
   return neighbor;
 }

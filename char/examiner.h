@@ -21,6 +21,8 @@ namespace cprog_game
     bool m_examining;
     bool m_should_exit;
     mood m_examiner_mood;
+    int m_move_timer;
+    const static int FIKA_TIMEOUT;
   };
   }
 #endif // EXAMINER_H

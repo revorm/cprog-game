@@ -31,7 +31,7 @@ void cprog_game::Oracle::interact(Character *c) {
 
 void cprog_game::Oracle::action() {
   static int counter = 0;
-  if((counter++ % 10) == 0) {
+  if((counter++ % 2) == 0) {
     const Environment::Direction_map m = environment()->directions();
     unsigned int r = rand() % m.size();
     Environment::Direction_map::const_iterator it = m.begin();

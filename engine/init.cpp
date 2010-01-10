@@ -87,6 +87,9 @@ void cprog_game::GameEngine::init() {
   Friend* ture = new Friend("Ture Tekonolog", e_house, bad_idea_2, 5);
   add_to_game(ture);
 
+  Examiner* alex = new Examiner("Alexander Baltazis", office);
+  add_to_game(alex);
+
   if(m_interactive) {
     Player* p = new Player("player",out);
     add_to_game(p);

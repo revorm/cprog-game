@@ -4,8 +4,6 @@
 
 #include <sstream>
 
-const std::string cprog_game::GameSourceTarball::ITEM_NAME("game");
-
 void cprog_game::GameSourceTarball::interact(Character* c) {
   std::ostringstream ss;
   ss << "You play the game on your laptop and estimate that it's " << value() << " fun";

@@ -11,6 +11,8 @@ namespace cprog_game
     ComputerRoom(const std::string & name, const std::string & desc) : Environment(name,desc) {}
   
     void interact(Character* c);
+  private:
+    static int s_tarball_count;
   };
 }
 

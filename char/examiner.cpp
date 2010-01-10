@@ -29,17 +29,27 @@ void cprog_game::Examiner::action() {
 
 void cprog_game::Examiner::interact(Character *c) {
   say_to(c,"Are you done with your lab yet?");
-  Object* o = environment()->get_item("game");
-  GameSourceTarball* g = dynamic_cast<GameSourceTarball*>(o);
-  if(g) {
-    say_to(c,"Let me look at it...");
-    m_examining = true;
-    g->interact(this);
-    m_examining = false;
+  const Environment::Inventory_t& objs = environment()->objects();
+  Environment::Inventory_t::const_iterator it = objs.lower_bound("game");
+  if(it->first.substr(0,4) != "game") {
+    it = objs.end();
+  }
 
-    if(m_should_exit) {
-      say_to(c,"Well done! You get an E for effort...");
-      GameEngine::get()->game_finished();
+  if(it != objs.end()) {
+    GameSourceTarball* g = dynamic_cast<GameSourceTarball*>(it->second);
+    if(g) {
+      say_to(c,"Let me look at it...");
+      m_examining = true;
+      g->interact(this);
+      m_examining = false;
+
+      if(m_should_exit) {
+        say_to(c,"Well done! You get an E for effort...");
+        GameEngine::get()->game_finished();
+      } else {
+        say_to(c,"Well that wasn't very good now was it FFFFFFF!");
+        take(it->first);
+      }
     }
   }
 }

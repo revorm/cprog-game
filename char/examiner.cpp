@@ -4,8 +4,8 @@
 
 #include <sstream>
 
-cprog_game::Examiner::Examiner(const std::string& name, Environment* start_env) : Character(name,start_env), m_examining(false), m_should_exit(false){
-  m_examiner_mood = BAD;
+cprog_game::Examiner::Examiner(
+    const std::string& name, Environment* start_env) : Character(name,start_env), m_examining(false), m_should_exit(false), m_examiner_mood(BAD) {
 }
 
 void cprog_game::Examiner::action() {

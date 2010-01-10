@@ -49,3 +49,5 @@ env/fikaroom.h
 env/fikaroom.cpp
 env/examineroffice.h
 env/examineroffice.cpp
+obj/apple.h
+obj/apple.cpp

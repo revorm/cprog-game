@@ -32,7 +32,10 @@ std::string cprog_game::Environment::description() const {
   s << std::endl;
   s << "Characters: ";
   for(std::vector<Character*>::const_iterator it = m_characters.begin(); it != m_characters.end(); ++it) {
-    s << (*it)->name() << " ";
+    const std::string& name((*it)->name());
+    if(name != "player") {
+      s << name << " ";
+    }
   }
   return s.str();
 }

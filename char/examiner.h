@@ -19,6 +19,7 @@ namespace cprog_game
     };
     mood m_examiner_mood;
     int m_move_timer;
+    int m_move;
     const static int FIKA_TIMEOUT;
   };
   }

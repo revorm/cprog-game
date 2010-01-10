@@ -7,15 +7,16 @@
 #include <sstream>
 #include <cstdlib>
 
-const int cprog_game::Examiner::FIKA_TIMEOUT = 4; // examiner hides in fika-room for 4 turns
+const int cprog_game::Examiner::FIKA_TIMEOUT = 2; // examiner hides in fika-room for 4 turns
 
 cprog_game::Examiner::Examiner(
-    const std::string& name, Environment* start_env) : Character(name,start_env), m_examiner_mood(BAD) {
+    const std::string& name, Environment* start_env) : Character(name,start_env), m_examiner_mood(BAD), m_move_timer(0), m_move(0) {
 }
 
 void cprog_game::Examiner::action() {
-  /*if(dynamic_cast<ExaminerOffice*>(m_current_environment)) {
-    if((m_current_environment->characters().size() < 2) && rand() < (RAND_MAX/8) ) { // approx 12,5% probab.
+  ++m_move;
+  if(dynamic_cast<ExaminerOffice*>(m_current_environment)) {
+    if(m_move % 20 == 0) {
       m_move_timer = 0;
       go(Environment::NORTH);
     }
@@ -24,7 +25,7 @@ void cprog_game::Examiner::action() {
     if(m_move_timer >= FIKA_TIMEOUT) {
       go(Environment::SOUTH);
     }
-  }*/
+  }
 }
 
 void cprog_game::Examiner::interact(Character *c) {

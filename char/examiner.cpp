@@ -4,7 +4,9 @@
 
 #include <sstream>
 
-const int cprog_game::Examiner::EXAMINER_MOOD = 2;
+cprog_game::Examiner::Examiner(const std::string& name, Environment* start_env) : Character(name,start_env), m_examining(false), m_should_exit(false){
+  m_examiner_mood = BAD;
+}
 
 void cprog_game::Examiner::action() {
 }
@@ -32,7 +34,7 @@ void cprog_game::Examiner::inform(const std::string &s) {
     std::istringstream iss(s.substr(pos));
     int value;
     if(iss >> value) {
-      if(value >= EXAMINER_MOOD) {
+      if(value >= m_examiner_mood) {
         m_should_exit = true;
       }
     }

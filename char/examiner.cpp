@@ -15,7 +15,7 @@ cprog_game::Examiner::Examiner(
 
 void cprog_game::Examiner::action() {
   if(dynamic_cast<ExaminerOffice*>(m_current_environment)) {
-    if(rand() < (RAND_MAX/8) ) { // approx 12,5% probab.
+    if((m_current_environment->characters().size() < 2) && rand() < (RAND_MAX/8) ) { // approx 12,5% probab.
       m_move_timer = 0;
       go(Environment::NORTH);
     }

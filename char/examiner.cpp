@@ -26,6 +26,12 @@ void cprog_game::Examiner::action() {
       go(Environment::SOUTH);
     }
   }
+
+  Environment::Inventory_t::const_iterator it = environment()->objects().lower_bound("apple");
+  if(it != environment()->objects().end() && it->first.substr(0,5) == "apple") {
+    take(it->first);
+    it->second->interact(this);
+  }
 }
 
 void cprog_game::Examiner::interact(Character *c) {

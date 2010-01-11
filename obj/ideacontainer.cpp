@@ -2,6 +2,8 @@
 
 #include "idea.h"
 
+#include <sstream>
+
 const std::string cprog_game::IdeaContainer::ITEM_NAME("ideabag");
 
 int cprog_game::IdeaContainer::value() const {

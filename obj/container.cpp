@@ -58,7 +58,7 @@ std::string cprog_game::Container::description() const {
   ss << m_description;
   ss << " ";
   for(size_t i = 0; i < m_contents.size(); ++i) {
-    ss << m_contents[i]->name() << " : " << m_contents[i]->description();
+    ss << m_contents[i]->name() << " : " << m_contents[i]->description() << std::endl;
   }
   ss << "Total Value: " << value();
   return ss.str();
